@@ -9,3 +9,5 @@ ORDER BY deptno ASC, sal DESC;
 SELECT * FROM emp
 ORDER BY DEPTNO ASC, sal DESC, EMPNO DESC;
 
+-- 주석달기 
+
