@@ -158,3 +158,55 @@ SELECT sal FROM emp;
 SELECT empno FROM emp
 UNION  ALL
 SELECT ename FROM emp;
+
+SELECT ename,empno,sal,deptno FROM emp
+WHERE ename LIKE '%E%' AND deptno=30 and sal NOT BETWEEN 1000 AND 2000 ;
+
+
+-- 추가수당 null, 상급자(mgr) null, 직책 m,c 이름에 두번째 글씨가 l이 아닌!!
+-- 손코딩으로 미리 작성하고 구문 작성
+SELECT * FROM emp
+WHERE (comm IS NULL 
+AND mgr IS NOT null
+AND JOB = 'MANAGER' OR JOB = 'CLERK')
+AND ename NOT LIKE '_L%';
+
+
+SELECT empno, ename, job, sal ,deptno FROM emp
+WHERE deptno = 30 AND job = 'SALESMAN';
+
+
+
+-- upper, lower
+SELECT ename, upper(ename), lower(ename) FROM EMP; 
+
+-- like 검색
+SELECT ename FROM emp
+WHERE lower(ename) LIKE lower('%aM%');
+
+-- dual 더미 테이블로 출력만 하고 싶을떄
+
+SELECT upper('aBc'), lower('aBc') FROM dual;
+
+SELECT ename FROM emp;
+
+SELECT length(ename) FROM emp;
+
+SELECT ename FROM emp
+WHERE LENGTH(ename) = 5;
+
+SELECT LENGTHB('a') FROM dual;
+
+SELECT lengthb('한') FROM dual;
+
+
+
+
+
+
+
+
+
+
+
+
