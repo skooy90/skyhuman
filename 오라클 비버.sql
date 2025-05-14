@@ -99,15 +99,62 @@ WHERE deptno IN (10,20);
 SELECT * FROM emp
 WHERE deptno not IN (10,20);
 
+SELECT * FROM emp
+WHERE deptno BETWEEN 10 AND 20;
+
 -- 05.13일 수업마무리
 
+SELECT * FROM emp
+WHERE ename LIKE 'S%';
+
+SELECT * FROM emp
+WHERE ename LIKE '_L%';
+
+SELECT * FROM emp
+WHERE ename LIKE '%AM%';
+
+SELECT * FROM emp
+WHERE ename LIKE '%A%';
+
+SELECT * FROM emp
+WHERE ename not LIKE '%A%';
+
+SELECT COMM FROM emp;
+
+SELECT COMM FROM EMP 
+WHERE comm > 400;
+
+SELECT * FROM emp
+WHERE comm IS NULL;
+
+SELECT * FROM emp
+WHERE comm IS not NULL;
+
+SELECT * FROM emp
+WHERE deptno = 10
+union
+SELECT * FROM emp
+WHERE deptno = 20;
 
 
+SELECT * FROM emp
+WHERE deptno = 10
+union
+SELECT * FROM emp
+WHERE deptno = 10;
+
+SELECT * FROM emp
+WHERE deptno = 10
+UNION all
+SELECT * FROM emp
+WHERE deptno = 10;
 
 
+SELECT empno FROM emp
+UNION  ALL
+SELECT sal FROM emp;
 
 
-
-
-
-
+SELECT empno FROM emp
+UNION  ALL
+SELECT ename FROM emp;
