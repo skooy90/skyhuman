@@ -317,6 +317,72 @@ SELECT empno || ' : ' || ename FROM emp;
 SELECT '    ab c   ', trim('    ab c   ')FROM dual;
 
 
+-- round
+SELECT  
+	round(14.46), -- 하나만 입력하면 소수점 첫자리 반올림	
+	round(14.46, 1),-- 소수점 두번쨰 자리에서 반올림
+	round(14.46, -1) -- 양의 자리 첫번째 자리에서 반올림
+FROM dual;
+
+SELECT 
+	trunc(14.46),
+	trunc(14.46, 1),
+	trunc(14.46, -1),
+	trunc(-14.46)
+FROM dual;
+
+SELECT 
+	CEIL(3.14),
+	floor(3.14),
+	ceil(-3.14),
+	floor(-3.14),
+	trunc(-3.14)
+	FROM dual;
+	
+
+SELECT 7 / 3 FROM dual;
+SELECT 7 / 0 FROM dual;
+
+SELECT mod(7, 3) FROM dual;
+SELECT mod(9.3, 3.3) FROM dual;
+
+SELECT sysdate FROM dual;
+
+
+SELECT empno, empno + '1000' FROM emp;
+
+
+SELECT empno, empno + 'abcd' FROM emp;
+
+
+SELECT 'a'+'b' FROM dual;
+
+SELECT 'a' || 'b' FROM dual;
+
+SELECT 123 || 123 FROM dual;
+SELECT 123 + 123 FROM dual;
+
+SELECT TO_char(sysdate, 'yyyy-mm-dd hh-mi-ss') AS "현재 시간" FROM dual;
+
+
+SELECT to_char(hiredate, 'yyyy"년"mm"월"dd"일"') FROM emp;
+
+SELECT to_date('2025-05-15', 'yyyy-mm-dd') - to_date('1995-12-01', 'yyyy-mm-dd') FROM dual;
+
+
+SELECT * FROM emp;
+
+SELECT * FROM emp
+WHERE hiredate > TO_date('1981-06-01', 'yyyy-mm-dd');
+
+SELECT 
+	nvl (comm, -1) ,
+	sal * 12 + comm ,
+	sal * 12 + nvl (comm, 0)
+FROM emp;
+
+
+
 
 
 
