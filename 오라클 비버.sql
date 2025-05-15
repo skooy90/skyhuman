@@ -159,6 +159,25 @@ SELECT empno FROM emp
 UNION  ALL
 SELECT ename FROM emp;
 
+-- 부서 10번을 사원번호 내림차순(desc)으로 정렬하여 출력
+SELECT * FROM emp 
+WHERE deptno = 10
+ORDER BY empno desc;
+-- 부서 20번을 사원번호 오름차순(asc)으로 정렬하여 출력
+SELECT * FROM emp 
+WHERE deptno = 20
+ORDER BY empno;
+
+-- 아직 안배운 기술로 order by 적용 가능 
+SELECT * FROM (
+	SELECT * FROM emp 
+	WHERE deptno = 10
+	UNION all
+	SELECT * FROM emp 
+	WHERE deptno = 20
+	)
+ORDER BY empno;
+
 SELECT ename,empno,sal,deptno FROM emp
 WHERE ename LIKE '%E%' AND deptno=30 and sal NOT BETWEEN 1000 AND 2000 ;
 
@@ -198,6 +217,104 @@ WHERE LENGTH(ename) = 5;
 SELECT LENGTHB('a') FROM dual;
 
 SELECT lengthb('한') FROM dual;
+
+
+
+SELECT  * FROM emp
+WHERE NOT (sal >= 2000 AND sal <=3000);
+
+
+SELECT * FROM emp
+WHERE comm IS NULL
+AND mgr IS NOT null
+AND job IN ('MANAGER','CLERK')
+AND ename NOT like('_L%');
+
+
+SELECT job, substr(job, 1, 2), substr(job, 3, 2), substr(job, 5)
+FROM emp;
+
+-- 사원이름(ename) 두번째 부터 3글자만 출력
+SELECT ename ,substr(ename, 2,3)
+FROM emp;
+
+
+-- 음수 사용(글자의 끝부터 사용)
+SELECT job, substr(job, -3, 2) FROM emp;
+
+
+-- 이름의 뒤에서부터 3글자만 모두 출력하기
+SELECT ename, substr(ename, -3) FROM emp;
+
+
+SELECT '010-1234-5678' AS REPLACE_brfore,
+	replace('010-1234-5678', '-', ' ') AS REP_1,
+	replace('010-1234-5678', '-') AS REP_2
+	FROM dual;
+
+-- 사원이름에서 E를 -으로 모두 교체
+SELECT ename,
+	replace(ename, 'E', '-') AS rep
+	FROM emp;
+
+SELECT ename,
+	replace(ename, 'TT', '-') AS rep
+	FROM emp;
+
+
+
+-- LPAD
+SELECT LPAD(ename, 10, '#') FROM emp;
+-- PRAD
+SELECT RPAD(ename, 5, '@') FROM emp;
+
+-- 모자르면 채우고
+-- 넘어가면 자르고 
+
+
+-- 난이도 쉬운거
+-- nanme에 앞에 두글자만 출력
+SELECT substr(ename,1,2) FROM emp;
+-- 답
+SELECT ename, substr(ename,1,2) FROM emp;
+SELECT rpad(ename, 2) FROM emp;
+-- 이름을 마스킹하는 버전 
+-- 앞에 두글자만 원본을 출력하고 나머지는 4개의 *로 표시
+SELECT Rpad(substr(ename,1,2), 6, '*') FROM emp;
+-- 답
+SELECT 
+	rpad(
+		substr(ename, 1,2),
+		6,
+		'*'
+	)
+	FROM emp;
+
+-- 사원 이름 두글자만 보이고 나머지는 *로 단, 이름 갯수는 일치하게
+
+SELECT Rpad(substr(ename,1,2), LENGTH(ename), '*') FROM emp;
+-- 답
+SELECT
+	ename,
+	rpad(
+		substr(ename, 1,2),
+		LENGTH(ename),
+		'*'
+	)
+	FROM emp;
+
+-- 심화???? 
+-- job을 총 20자리 중 가운데 정렬 
+
+SELECT Lpad(rpad(job , LENGTH(job)+5, '*') ,LENGTH(job)+10,'*') FROM emp;
+
+SELECT 'ab' || 'cd' || 'fe' FROM dual;
+
+SELECT empno || ' : ' || ename FROM emp;
+
+
+
+SELECT '    ab c   ', trim('    ab c   ')FROM dual;
 
 
 
