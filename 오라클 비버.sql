@@ -381,7 +381,230 @@ SELECT
 	sal * 12 + nvl (comm, 0)
 FROM emp;
 
+-- 각사원 연봉 출력
+-- 월급(sal) * 12 + comm 
+-- 이름과(ename), total_pay 출력
+ 
+SELECT 
+	ename, 
+	sal * 12 + nvl(comm, 0) 
+		AS total_pay
+FROM emp;
 
+SELECT empno, ename, job, sal,
+	decode(job,
+		'MANGER', sal*1.1,
+		'SALESMAN', sal*1.05,
+		'ANALYST', sal,
+		sal * 1.03) AS upsal
+	FROM emp;
+
+
+
+SELECT ename, job, sal,
+	CASE job
+		WHEN 'MANAGER' THEN sal*1.1
+		WHEN 'SALESMAN' THEN sal*1.05
+		WHEN 'ANALYST' THEN sal
+		ELSE sal*1.03
+	eND AS upsal
+	FROM emp;
+
+SELECT comm,
+	decode(comm,
+		NULL, -1,
+		comm) AS decode
+	FROM emp;
+
+SELECT comm,
+	CASE 
+	WHEN comm IS null THEN '해당 없음'
+	WHEN comm = 0 THEN '0원'
+	WHEN comm > 0 THEN '수당 : ' || comm
+	END  AS "case"
+	FROM emp;
+
+
+SELECT comm,
+	CASE 
+	WHEN comm IS not null 
+		THEN '수당 : ' || comm
+	ELSE '해당없음'
+	END  AS "case"
+	FROM emp;
+
+
+-- 문제 1
+-- 사원이름 5글자 이상 6글자 미만
+-- MASKING_EMPNO 열에는 사원번호 2자리 외 별포로 표시
+-- 마스킹 이네임은 사원의 첫글자만 표시나머지 별표
+SELECT  
+	empno,
+	rpad(substr(empno, 1,2), 4, '*') AS MASKING_EMPNO,
+	ename,
+	rpad(substr(ename, 1,1),5, '*') AS MASKING_ENAME
+FROM emp
+WHERE LENGTH(ename) >= 5 and LENGTH(ename) < 6; 
+
+-- 문제2
+-- 월평균이 21.5일 일을 한다.
+-- 하루는 8시간 일을 한다.
+-- 일급으로 따지면 얼마인가? 소수점 3자리에서 버리고 DAY_PAY
+-- 시급은 얼마인가? 소수점 2자리에서 반올림
+SELECT 
+	empno,ename,sal,
+	trunc(sal / 21.5, 2) AS DAY_PAY,
+	round((sal / 21.5)/8, 1) AS TIME_PAY
+	FROM emp;
+	
+-- 문제3
+-- 표처럼 나오게 해주세요
+-- mgr 직속상관이 null일때는 0000이 나오게
+-- mgr 앞자리 2개에 따라 뒤에는 표처럼 나오게
+-- mgr 그외에는 그대로 나오게 표시
+
+-- V1
+SELECT empno, ename, mgr,
+	 CASE
+	 	WHEN mgr IS NULL THEN '0000' 
+	 	WHEN mgr LIKE '75__' THEN '5555'
+	 	WHEN mgr LIKE '76__' THEN '6666'
+	 	WHEN mgr LIKE '77__' THEN '7777'
+	 	WHEN mgr LIKE '78__' THEN '8888'
+	 	ELSE to_char(mgr)
+	 END AS CHG_MGR
+FROM emp;
+
+-- V2
+SELECT empno, ename, mgr,
+	 CASE
+	 	WHEN mgr IS NULL THEN '0000'
+	 	WHEN substr(mgr ,1,2) = '75'  THEN '5555'
+	 	WHEN substr(mgr ,1,2) = '76' THEN '6666'
+	 	WHEN substr(mgr ,1,2) = '77' THEN '7777'
+	 	WHEN substr(mgr ,1,2) = '78' THEN '8888'
+	 	ELSE to_char(mgr) -- '' || mgr
+	 END AS CHG_MGR
+FROM emp;
+
+-- V3
+SELECT empno, ename, mgr,
+	CASE 
+		WHEN mgr IS NULL THEN '0000'
+		WHEN mgr IS NOT NULL 
+		THEN 
+	 		CASE substr(mgr ,1,2)
+	 			WHEN '75' THEN '5555'
+	 			WHEN '76' THEN '6666'
+			ELSE to_char(MGR)
+	 		END
+	END AS CHG_MGR
+FROM emp;
+
+-- V4
+
+SELECT empno, ename, mgr,
+	 CASE
+	 	WHEN substr(mgr ,1,2) = '75'  THEN '5555'
+	 	WHEN substr(mgr ,1,2) = '76' THEN '6666'
+	 	WHEN substr(mgr ,1,2) = '77' THEN '7777'
+	 	WHEN substr(mgr ,1,2) = '78' THEN '8888'
+	 	ELSE to_char( nvl(mgr, '0000')) -- '' || mgr
+	 END AS CHG_MGR
+FROM emp;
+
+
+ -- V5
+SELECT 
+	CASE 
+		WHEN mgr IS NULL THEN '0000'
+		WHEN substr(mgr, 2,1) IN ( '5','6','7','8' )
+		THEN lpad( substr(mgr,2,1), 4,substr(mgr,2,1))
+		ELSE ' ' || mgr
+	END 
+	FROM emp;
+
+
+SELECT sum(sal) FROM emp;
+
+SELECT sum(comm) FROM EMP;
+SELECT count(comm) FROM emp;
+SELECT count(sal) FROM emp;
+
+SELECT count(*), sum(SAL) FROM emp;
+
+SELECT count(sal), count(comm) FROM emp;
+
+SELECT max(sal), min(sal), sum(sal), avg(sal) FROM emp;
+SELECT min(hiredate), min(comm) FROM emp;
+
+SELECT count(ename) FROM emp
+WHERE ename LIKE '%A%';
+
+SELECT ename FROM emp
+WHERE ename LIKE '%L%';
+
+SELECT count(ename) FROM emp
+WHERE ename LIKE '%L%';
+
+SELECT trunc(avg(sal),2) FROM emp;
+
+-- 다중행 함수, (집계 함수)
+-- where에서 사용 할 수 없다. 
+
+
+SELECT avg(sal), deptno
+FROM emp
+GROUP BY deptno;
+
+
+
+SELECT deptno, sum(sal), count(*), max(sal), min(sal)
+FROM emp
+GROUP BY deptno;
+
+SELECT job FROM emp
+GROUP BY job;
+
+
+SELECT deptno, job, count(*), 
+FROM EMP
+GROUP BY deptno, job;
+
+SELECT deptno, job, count(*), ename
+FROM EMP
+GROUP BY deptno, job, ename;
+
+
+SELECT job 
+FROM EMP
+WHERE deptno = 10
+GROUP BY job
+ORDER BY JOB desc;
+
+
+SELECT job, deptno
+FROM emp
+GROUP BY deptno, JOB 
+	HAVING deptno = 10;
+
+
+SELECT job, deptno, avg(sal)
+FROM emp
+GROUP BY deptno, JOB 
+	HAVING deptno = 10;
+
+SELECT job, deptno, avg(sal)
+FROM emp
+GROUP BY deptno, JOB 
+	HAVING avg(sal) > 2000;
+
+SELECT job, count(*) as cnt
+FROM emp
+WHERE sal >= 1000
+GROUP BY JOB 
+HAVING count(*) >= 3 
+ORDER BY cnt DESC;
 
 
 
