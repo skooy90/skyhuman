@@ -306,7 +306,9 @@ SELECT
 -- 심화???? 
 -- job을 총 20자리 중 가운데 정렬 
 
-SELECT Lpad(rpad(job , LENGTH(job)+5, '*') ,LENGTH(job)+10,'*') FROM emp;
+SELECT Lpad(
+rpad(job , (LENGTH(job)+20)/2, '*') ,20,'*') 
+AS job_centered FROM emp;
 
 SELECT 'ab' || 'cd' || 'fe' FROM dual;
 
@@ -634,16 +636,113 @@ SELECT *
 
 SELECT s.grade , e.ename , e.sal
 	FROM salgrade s , EMP e 
-	WHERE e.sal BETWEEN losal AND HISAL 
-	AND ename = 'SMITH';
+	WHERE e.sal BETWEEN s.losal AND s.HISAL 
+	AND e.ename = 'SMITH';
 
 SELECT * FROM salgrade;
 
+SELECT * FROM emp;
 
 
+SELECT e1.empno,e1.ename,e1.mgr,
+	e.empno AS MGR_empno, e.ename AS MGR_ENAME
+ FROM emp e1, emp e
+ WHERE e1.mgr = e.empno;
+-- 총 13개 나옴 king이 mgr이 null이라서
 
 
+SELECT count(*)
+ FROM emp e1, emp e
+ WHERE e1.mgr = e.empno;
+
+-- 오라클 전용 널값 나오게 하는 버젼
+
+SELECT e1.empno,e1.ename,e1.mgr,
+	e.empno AS MGR_empno, e.ename AS MGR_ENAME
+ FROM emp e1, emp e
+ WHERE e1.mgr = e.empno(+);
+
+-- (+) 기준의 반대편 left,right 조인이 된다.
+
+SELECT e1.empno,e1.ename,e1.mgr,
+	e.empno AS MGR_empno, e.ename AS MGR_ENAME
+ FROM emp e1, emp e
+ WHERE e1.mgr(+) = e.empno;
+
+-- => 좌우로 움직이는 거보다는  한쪽으로 정의해서 보기 좋은쪽으로 정리한다.
+
+SELECT e.ename,d.loc, deptno
+FROM emp e join DEPT d using(deptno)
+WHERE sal >=3000;
 
 
+SELECT e.ename,d.loc, d.deptno
+FROM emp e join DEPT d on(e.deptno = d.deptno)
+WHERE sal <=3000;
 
 
+SELECT *
+FROM emp e1 JOIN emp e2 on(e1.mgr = e2.empno);
+
+SELECT *
+FROM emp e1 LEFT OUTER JOIN emp e2 ON (e1.mgr = e2.empno);
+
+SELECT *
+FROM emp e1 RIGHT OUTER JOIN emp e2 ON (e1.mgr = e2.empno);
+
+SELECT *
+FROM emp e1 FULL OUTER JOIN emp e2 ON (e1.mgr = e2.empno )
+Order BY e1.ename;
+
+--q1, 급여가 2000를 초과한 사원의 부서 정보(dept) 사원 정보(emp)를 출력
+SELECT d.deptno, d.dname, e.empno, e.ename, e.sal 
+FROM dept d JOIN emp e ON (e.deptno = d.deptno )
+WHERE e.sal > 2000
+ORDER BY d.deptno;
+
+SELECT * FROM dept;
+SELECT * FROM emp;
+
+--q2, 부서별 평균굽여ㅡ 최대 급여 , 최소 급여 , 사원 수를 출력
+SELECT d.deptno,d.dname, 
+trunc(avg(e.sal), 0) as AVG_sal, max(e.sal) as MAX_SAL, 
+min(e.sal) as MIN_sal, count(*)
+FROM dept d JOIN emp e ON(e.deptno = d.deptno )
+GROUP BY d.deptno,d.dname
+ORDER BY d.deptno;
+
+--q3, 부서에서 모든 부서정보와 사원 정보를 다음과 같이 출력 
+-- 부서 번호 -> 사원 이름수느 40부서도 포함.
+SELECT d.deptno, d.dname, e.empno, e.ename, e.job, e.sal
+FROM dept d LEFT OUTER JOIN emp e on (e.deptno = d.deptno)
+ORDER BY d.deptno;
+
+
+-- q4, 40부서를 살리고 직송 상관 정보까지 나오게 해서 출력 salgrade
+
+SELECT d.deptno,d.dname, e.*, s.* ,e2.empno AS MGR_empno ,e2.ename AS MGR_ename  FROM 
+dept d LEFT OUTER JOIN emp e ON (e.deptno = d.deptno)
+LEFT OUTER join SALGRADE s ON (e.sal BETWEEN losal AND hisal )
+left OUTER JOIN emp e2 ON (e.deptno = e2.deptno)
+ORDER BY d.deptno, e.empno;
+
+
+SELECT d.deptno,d.dname, e.*, s.* 
+,e2.empno AS MGR_empno 
+,e2.ename AS MGR_ename  
+FROM emp e right OUTER JOIN emp e2 ON (e.DEPTNO = e2.DEPTNO )
+JOIN SALGRADE s ON (e.sal BETWEEN losal AND hisal)
+right OUTER JOIN dept d on (e.deptno = d.deptno)
+ORDER BY d.deptno, e.empno;
+
+
+SELECT * FROM SALGRADE;
+
+SELECT * FROM emp
+WHERE sal >= 700 AND sal < 1200 ;
+
+
+SELECT e1.empno,e1.ename,e1.mgr,
+	e.empno AS MGR_empno, e.ename AS MGR_ENAME
+ FROM emp e1, emp e
+ WHERE e1.mgr = e.empno(+);
