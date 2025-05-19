@@ -608,6 +608,37 @@ ORDER BY cnt DESC;
 
 
 
+SELECT * FROM dept;
+
+SELECT * FROM EMP, DEPT
+ORDER BY empno;
+
+
+SELECT * FROM EMP e , DEPT d
+WHERE e.deptno = d.deptno
+ORDER BY empno;
+
+--SELECT  deptno가 어떤 테이블인지 헷갈려 에러발생  -> deptno, ename
+--FROM EMP e , DEPT d
+--WHERE e.deptno = d.deptno;
+
+SELECT e.deptno, ename
+FROM EMP e , DEPT d
+WHERE e.deptno = d.deptno;
+
+SELECT * 
+	FROM  emp
+	WHERE ename = 'SMITH';
+
+
+
+SELECT s.grade , e.ename , e.sal
+	FROM salgrade s , EMP e 
+	WHERE e.sal BETWEEN losal AND HISAL 
+	AND ename = 'SMITH';
+
+SELECT * FROM salgrade;
+
 
 
 
