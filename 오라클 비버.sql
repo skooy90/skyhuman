@@ -698,14 +698,14 @@ Order BY e1.ename;
 SELECT d.deptno, d.dname, e.empno, e.ename, e.sal 
 FROM dept d JOIN emp e ON (e.deptno = d.deptno )
 WHERE e.sal > 2000
-ORDER BY d.deptno;
+ORDER BY d.DEPTNO  , dname  ;
 
 SELECT * FROM dept;
 SELECT * FROM emp;
 
 --q2, 부서별 평균굽여ㅡ 최대 급여 , 최소 급여 , 사원 수를 출력
 SELECT d.deptno,d.dname, 
-trunc(avg(e.sal), 0) as AVG_sal, max(e.sal) as MAX_SAL, 
+floor(avg(e.sal)) as AVG_sal, max(e.sal) as MAX_SAL, 
 min(e.sal) as MIN_sal, count(*)
 FROM dept d JOIN emp e ON(e.deptno = d.deptno )
 GROUP BY d.deptno,d.dname
@@ -715,34 +715,196 @@ ORDER BY d.deptno;
 -- 부서 번호 -> 사원 이름수느 40부서도 포함.
 SELECT d.deptno, d.dname, e.empno, e.ename, e.job, e.sal
 FROM dept d LEFT OUTER JOIN emp e on (e.deptno = d.deptno)
-ORDER BY d.deptno;
+ORDER BY d.deptno, e.ename;
 
 
 -- q4, 40부서를 살리고 직송 상관 정보까지 나오게 해서 출력 salgrade
-
-SELECT d.deptno,d.dname, e.*, s.* ,e2.empno AS MGR_empno ,e2.ename AS MGR_ename  FROM 
-dept d LEFT OUTER JOIN emp e ON (e.deptno = d.deptno)
-LEFT OUTER join SALGRADE s ON (e.sal BETWEEN losal AND hisal )
-left OUTER JOIN emp e2 ON (e.deptno = e2.deptno)
-ORDER BY d.deptno, e.empno;
-
-
-SELECT d.deptno,d.dname, e.*, s.* 
-,e2.empno AS MGR_empno 
-,e2.ename AS MGR_ename  
-FROM emp e right OUTER JOIN emp e2 ON (e.DEPTNO = e2.DEPTNO )
-JOIN SALGRADE s ON (e.sal BETWEEN losal AND hisal)
+-- v1
+SELECT d.deptno,d.dname, 
+e.empno,e.ENAME ,e.mgr,e.sal,e.deptno, 
+s.losal,s.hisal,s.grade,
+e2.empno AS MGR_empno,
+e2.ename AS MGR_ename  
+FROM emp e left OUTER JOIN emp e2 ON (e.mgr = e2.empno )
+LEFT OUTER JOIN SALGRADE s ON (e.sal BETWEEN losal AND hisal)
 right OUTER JOIN dept d on (e.deptno = d.deptno)
 ORDER BY d.deptno, e.empno;
-
-
+-- v2
+SELECT d.deptno,d.dname, 
+e.empno,e.ENAME ,e.mgr,e.sal,e.deptno, 
+s.losal,s.hisal,s.grade,
+e2.empno AS MGR_empno,
+e2.ename AS MGR_ename
+FROM dept  d
+	LEFT OUTER JOIN emp e ON (d.deptno = e.deptno)
+	left OUTER JOIN salgrade s ON (e.sal >= s.losal 
+						AND e.sal <= s.hisal)
+	LEFT OUTER JOIN emp e2 ON (e.mgr = e2.empno)
+ORDER BY d.deptno, e.empno;
 SELECT * FROM SALGRADE;
 
-SELECT * FROM emp
-WHERE sal >= 700 AND sal < 1200 ;
+ 
+-- q
+-- 각 부서별로 급여가 
+-- 가장 높은 사원 , 가장 낮은 사원의 급여 차이 부서번호를 가지오니라
+SELECT  deptno, max(sal),min(sal), max(sal) - min(sal) AS salcap
+FROM emp
+GROUP BY deptno;
+
+SELECT *
+FROM emp
+WHERE sal > (SELECT SAL 
+			FROM EMP
+			WHERE ename = 'JONES');
+
+SELECT *
+FROM emp
+WHERE hiredate < (SELECT hiredate
+			FROM emp
+			WHERE ename = 'SCOTT');
 
 
-SELECT e1.empno,e1.ename,e1.mgr,
-	e.empno AS MGR_empno, e.ename AS MGR_ENAME
- FROM emp e1, emp e
- WHERE e1.mgr = e.empno(+);
+
+-- emp 평균 월급보다 이상받는 사람 출력
+
+SELECT *
+FROM emp
+WHERE sal > (SELECT avg(sal)
+			FROM emp); 
+
+SELECT deptno,ename, sal
+FROM emp
+WHERE sal in (SELECT max(sal)
+	FROM emp
+	GROUP BY deptno);
+
+
+SELECT * 
+FROM  (SELECT * FROM emp WHERE deptno = 10) e10,
+	dept d
+WHERE e10.deptno = d.deptno;;
+
+-- 직책별 3명이상인 것만 부하시오
+
+SELECT job, count(*) CNT
+FROM EMP
+GROUP BY job HAVING count(job) >= 3;
+
+SELECT *
+from(
+	SELECT job, count(*) cnt
+	FROM EMP
+	GROUP BY job
+)
+WHERE cnt >= 3;
+
+
+
+-- 
+SELECT *
+from(
+SELECT rownum rn, emp.*
+FROM emp
+)
+WHERE rn > 3 AND rn < 6;
+
+SELECT rownum rn, emp.*
+FROM emp
+order BY sal DESC;
+
+SELECT rownum,e1.*
+from(
+SELECT *
+FROM emp
+order BY sal DESC
+) e1;
+
+SELECT rn,ename
+from(
+	SELECT rownum rn,e1.*
+	from(
+		SELECT *
+		FROM emp
+		order BY sal DESC
+		) e1
+	)
+WHERE rn IN (2,3);
+
+WITH  e10 AS (
+	SELECT * FROM emp WHERE deptno = 10
+)
+SELECT ename FROM e10;
+
+SELECT empno, ename, job, sal,
+	(SELECT grade
+	FROM SALGRADE
+	WHERE e.sal BETWEEN losal AND hisal) AS salgrade,
+	deptno,
+	(SELECT dname
+	FROM dept
+	WHERE e.deptno = dept.deptno) AS dname	
+FROM emp e;
+
+
+-- q1
+-- 전체 사원중 ALLEN과 같은 직종의 사람들을 출력
+-- 사원 정보와 부서 정보
+
+
+SELECT e.job, e.empno, e.ename,e.SAL, d.deptno, d.dname 
+FROM emp e , dept d
+WHERE job = (SELECT job 
+		FROM emp
+		WHERE ename = 'ALLEN') AND e.deptno = d.deptno
+ORDER BY ename ;
+
+
+-- q2
+-- 전체 사원중 평균보다 더 많이 받는 사람들을 출력
+SELECT e.empno, e.ename,d.deptno, e.hiredate, d.loc ,e.sal ,
+	(SELECT grade
+	FROM SALGRADE
+	WHERE e.sal BETWEEN losal AND hisal) AS grade
+FROM
+	(SELECT *
+	FROM emp
+	WHERE sal > (SELECT avg(sal)
+			FROM emp)) e
+	,dept d
+WHERE e.deptno = d.deptno
+ORDER BY sal DESC, empno;
+
+--q3
+-- 30번 부서에 없는 직책을 가진 사람을 출력
+SELECT e.empno, e.ename, e.job, d.deptno, d.dname, d.loc
+FROM (SELECT * FROM emp WHERE deptno = 10) e,
+	dept d 
+WHERE (SELECT job FROM emp WHERE deptno = 10
+	GROUP BY job) !=
+	(SELECT job FROM emp WHERE deptno = 30
+	GROUP BY job)
+	AND d.DEPTNO = e.deptno;
+	
+	SELECT job FROM emp WHERE deptno = 10;
+	SELECT job FROM emp WHERE deptno = 30;
+	
+	
+	
+-- q4
+-- 직책이 세일즈맨의 최고 급여보다 많이 받는 사원의 사원 정보 출력
+SELECT empno,ename,sal,
+	(SELECT grade
+	FROM SALGRADE
+	WHERE e.sal BETWEEN losal AND hisal) AS grade
+FROM emp e
+WHERE 
+ e.sal > (SELECT max(sal) FROM emp WHERE job = 'SALESMAN') ;
+
+
+
+
+
+
+
+
+
