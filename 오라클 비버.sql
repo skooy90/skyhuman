@@ -875,19 +875,18 @@ WHERE e.deptno = d.deptno
 ORDER BY sal DESC, empno;
 
 --q3
--- 30번 부서에 없는 직책을 가진 사람을 출력
-SELECT e.empno, e.ename, e.job, d.deptno, d.dname, d.loc
-FROM (SELECT * FROM emp WHERE deptno = 10) e,
-	dept d 
-WHERE (SELECT job FROM emp WHERE deptno = 10
-	GROUP BY job) !=
-	(SELECT job FROM emp WHERE deptno = 30
-	GROUP BY job)
-	AND d.DEPTNO = e.deptno;
-	
-	SELECT job FROM emp WHERE deptno = 10;
-	SELECT job FROM emp WHERE deptno = 30;
-	
+-- 10번 부서에 근무하는 사원중 30번 부서에 없는 직책을 가진 사람을 출력
+-- 
+
+SELECT *
+FROM (SELECT *
+	FROM emp
+	WHERE deptno in (10,30)) 
+WHERE job NOT IN (SELECT job FROM emp WHERE deptno = 30 GROUP BY JOB );
+ -- AND (SELECT job FROM emp WHERE deptno = 30);
+
+
+
 	
 	
 -- q4
@@ -901,10 +900,48 @@ WHERE
  e.sal > (SELECT max(sal) FROM emp WHERE job = 'SALESMAN') ;
 
 
+/*
+문제
+1. 커미션이 null인 사원을 급여 오름차순으로 정렬,
 
+2. 급여 등급 별 사원 수를 등급 오름차순으로 정렬,
+단, 모든 등급을 표시한다
+salgrade
+3. 이름, 급여, 급여 등급, 부서이름 조회,
+단, 급여 등급 3 이상만 조회. 급여 등급 내림차순, 급여 등급이 같은 경우 급여 내림 차순
 
+4. 부서명이 SALES인 사원 중 급여 등급이 2 또는 3인 사원을 급여 내림차순으로 정렬
+*/
+-- q1
+SELECT * FROM emp 
+WHERE comm IS NULL
+ORDER BY sal ;
 
+-- q2
+SELECT s.grade, count(*)  FROM emp e, salgrade s
+WHERE e.sal BETWEEN s.losal AND s.hisal
+GROUP BY GRADE rade
+ORDER BY grade;
 
+-- q3 
+SELECT s.ename, s.sal, s.grade, d.dname 
+FROM 
+(SELECT *  FROM emp e, salgrade s
+WHERE e.sal BETWEEN s.losal AND s.hisal) s,
+dept d
+WHERE d.deptno = s.deptno and
+	s.grade >=3
+ORDER BY s.grade DESC, s.sal desc;  
 
+-- q4
+
+SELECT s.* FROM 
+(SELECT *  FROM emp e, salgrade s
+WHERE e.sal BETWEEN s.losal AND s.hisal) s,
+(SELECT * FROM emp e, dept d WHERE e.deptno = d.deptno and d.dname = 'SALES') d
+WHERE 
+s.grade in(2,3) AND s.empno = d.empno
+ORDER BY s.sal desc;
+SELECT * FROM dept; 
 
 
