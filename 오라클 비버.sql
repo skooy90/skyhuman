@@ -945,3 +945,177 @@ ORDER BY s.sal desc;
 SELECT * FROM dept; 
 
 
+-------------------------------------------------
+
+CREATE TABLE EMP_DDL(
+	empno number(4),
+	ename varchar2(2),
+	job varchar2(10),
+	mgr number(4),
+	hiredate DATE,
+	sal NUMBER(7,2),
+	comm NUMBER(7,2),
+	deptno number(2)
+);
+
+
+SELECT * from EMP_DDL;
+
+CREATE TABLE DEPT_DDL
+	AS SELECT * FROM dept;
+
+SELECT * FROM dept_ddl;
+
+CREATE TABLE EMP_DDL_30
+	AS SELECT * FROM emp
+	WHERE deptno = 30;
+
+SELECT * FROM emp_ddl_30;
+
+
+
+CREATE TABLE empdept_ddl
+	AS SELECT e.empno, e.ename, e.job, e.mgr, e.hiredate,
+	e.sal, e.comm, d.deptno, d.dname, d.loc	
+	FROM emp e, dept d
+	WHERE 1<>1;
+
+SELECT * FROM empdept_ddl;
+
+--------------------------------------
+
+
+
+CREATE TABLE emp_alter
+AS SELECT * FROM emp;
+
+SELECT * FROM emp_alter;
+
+ALTER TABLE emp_alter
+	ADD hp varchar2(20);
+
+SELECT * FROM emp_alter;
+
+ALTER TABLE emp_alter
+	add age2 NUMBER (3) DEFAULT 1;
+
+ALTER TABLE emp_alter
+	RENAME COLUMN hp TO tel;
+
+ALTER TABLE emp_alter
+	RENAME COLUMN age2 TO age;
+
+
+SELECT * FROM emp_alter;
+
+ALTER TABLE emp_alter
+	DROP COLUMN age;
+
+ALTER TABLE emp_alter
+	MODIFY empno number(5);
+-- 수정할 때 는 타입의 크기가 커지는거는 가능, 하지만
+-- 줄어드는건 불가능 하다.
+ALTER TABLE emp_alter
+	MODIFY empno number(4);
+
+
+SELECT * FROM emp_alter;
+
+ALTER TABLE EMP_ALTER 
+	DROP COLUMN hiredate;
+
+
+
+RENAME emp_alter TO emp_rename;
+
+SELECT * FROM emp_rename;
+
+TRUNCATE table emp_rename;
+
+
+DROP TABLE emp_rename;
+
+
+CREATE TABLE dept_temp
+	AS SELECT * FROM dept;
+
+
+INSERT INTO dept_temp (deptno, dname,loc)
+	VALUES (50, 'DATABASE', 'SEOUL');
+
+
+INSERT INTO dept_temp
+	VALUES (60, 'NETWORK', 'BUSAN');
+	
+
+INSERT INTO dept_temp
+VALUES (80, 'MOBILE' , '');
+
+INSERT INTO dept_temp (deptno, loc)
+VALUES (90, 'INCHEON');
+
+SELECT * FROM dept_temp;
+
+
+CREATE TABLE emp_temp
+	AS SELECT *
+		FROM emp
+		WHERE 1<>1;
+
+
+INSERT INTO emp_temp (empno, ename, hiredate)
+VALUES (2111, '이순신', to_date('2025-05-21', 'yyyy-mm-dd') );
+
+
+INSERT INTO emp_temp (empno, ename, hiredate)
+VALUES (2222, '심청이', sysdate);
+
+SELECT * FROM emp_temp;
+
+INSERT INTO emp_temp
+SELECT * FROM emp WHERE deptno = 10;
+
+CREATE TABLE dept_temp2
+AS SELECT * FROM dept;
+
+SELECT * FROM dept_temp2;
+
+
+UPDATE dept_temp2
+SET loc = 'SEOUL';
+
+UPDATE dept_temp2
+SET dname = 'DATEBASES'
+	,loc = 'SEOUL2'
+WHERE deptno = 40;
+
+CREATE TABLE emp_tmp
+AS SELECT * FROM emp;
+
+
+-- 연봉이 천미만만 조회 
+SELECT sal, sal * 1.03 FROM emp_tmp
+WHERE sal <1000;
+
+UPDATE emp_tmp
+SET sal = sal * 1.03
+WHERE sal < 1000;
+
+SELECT * FROM  emp_tmp;
+
+CREATE TABLE emp_temp2
+AS SELECT * FROM emp;
+
+COMMIT; 
+SELECT * FROM emp_temp2;
+DROP TABLE emp_temp2;
+
+DELETE emp_temp2;
+
+ROLLBACK;
+
+
+DELETE emp_temp2
+WHERE deptno = 10;
+
+
