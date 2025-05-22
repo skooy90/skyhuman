@@ -1119,3 +1119,138 @@ DELETE emp_temp2
 WHERE deptno = 10;
 
 
+SELECT * FROM dict;
+
+
+SELECT * FROM user_tables;
+
+
+
+SELECT * FROM USER_INDEXES;
+SELECT * FROM USER_IND_columns;
+
+CREATE INDEX idx_emp_sal ON emp(sal);
+
+SELECT * FROM emp;
+
+/* plan */
+SELECT  /* + index(idx_emp_sal) */
+ *  
+FROM  emp e
+WHERE sal = 2000;
+
+
+CREATE VIEW VW_EMP20
+ AS (SELECT empno, ename, job, deptno
+ 	FROM emp
+ WHERE deptno = 20);
+
+
+
+CREATE SEQUENCE SEQ_dept2 START WITH 10;
+
+SELECT seq_dept.nextval
+FROM dual;
+
+SELECT seq_dept.currval
+FROM dual;
+
+SELECT * FROM dept_temp;
+
+INSERT INTO dept_temp (deptno, dname, loc)
+VALUES (seq_dept2.nextval, '테스트', '천안');
+
+--------------------------------------
+-- primary key
+CREATE TABLE table_pk (
+	login_id varchar2(20) PRIMARY KEY,
+	login_pw varchar2(20) NOT NULL,
+	tel varchar2(20)
+);
+SELECT * FROM table_pk;
+
+SELECT * FROM user_indexes;
+
+INSERT INTO table_pk
+values('id', 'pw', null);
+
+INSERT INTO table_pk
+values('id2', 'pw2', null);
+
+
+INSERT INTO table_pk
+values(null, null, null);
+
+
+UPDATE table_pk
+SET login_id = NULL
+WHERE login_id = 'id';
+
+
+
+UPDATE table_pk
+SET login_id = 'id2'
+WHERE login_id = 'id';
+ ---------------------------
+
+create TABLE dept_fk(
+	deptno number(2) CONSTRAINT deptfk_deptno_pl PRIMARY KEY,
+	dname varchar2(14),
+	loc varchar2(13)
+);
+
+SELECT * from dept_fk;
+
+CREATE TABLE emp_fk (
+	empno NUMBER(4) CONSTRAINT pk_emp_fk PRIMARY KEY,
+	ename varchar(10),
+	deptno number(2) CONSTRAINT fk_emp_fk REFERENCES dept_fk(deptno)
+);
+
+CREATE TABLE emp_fk2 (
+	empno NUMBER(4) CONSTRAINT pk_emp_fk2 PRIMARY KEY,
+	ename varchar(10),
+	deptno number(2) 
+	,foreign KEY (deptno)
+	REFERENCES dept_fk(deptno)
+);
+
+
+SELECT * FROM emp_fk;
+
+INSERT INTO emp_fk
+ VALUES (1000, 'name', 10 );
+
+INSERT INTO dept_fk
+VALUES (10, '부사', '위치');
+SELECT * FROM dept_fk;
+-- 외래키로 참조가 되어있어서 안됨
+UPDATE emp_fk
+SET deptno = 20
+WHERE deptno = 10;
+
+UPDATE dept_fk
+SET deptno = 20
+WHERE deptno = 10;
+-- 참조되어 있는 부분을 제거
+DELETE dept_fk
+WHERE deptno = 10;
+-- 정상 작동이 되는 지점
+DELETE emp_fk
+WHERE deptno = 10;
+
+UPDATE dept_fk
+SET deptno = 20
+WHERE deptno = 10;
+
+SELECT * FROM dept_fk;
+
+
+
+
+
+
+
+
+
+
