@@ -1247,10 +1247,135 @@ SELECT * FROM dept_fk;
 
 
 
+CREATE TABLE board (
+	board_nu	number(20)	NOT NULL,
+	user_id	varchar2(50)	NOT NULL,
+	category	varchar2(50)	NOT NULL,
+	board_id	varchar2(50)	NULL,
+	creation	date	NOT NULL,
+	good	number(20)	NULL
+);
 
+CREATE TABLE category_ID (
+	category	varchar2(50)	NOT NULL,
+	category_nu	number(10)	NULL
+);
 
+CREATE TABLE user_data (
+	user_id	varchar2(50)	NOT NULL,
+	unaem	varchar2(50)	NOT NULL,
+	email	varchar2(50)	NULL,
+	phon_nu	varchar2(20)	NULL
+);
 
+CREATE TABLE date_table (
+	creation	date	NOT NULL,
+	Field	date	NULL,
+	board_nu	number(20)	NOT NULL,
+	Field2	VARCHAR2(55)	NULL
+);
+CREATE TABLE COMMENT_table (
+	comm	varchar2(50)	NOT NULL,
+	board_nu	number(20)	NOT NULL,
+	user_id	varchar2(50)	NOT NULL,
+	creation	date	NOT NULL,
+	comm_nu	varchar2(50)	NULL
+);
 
+ALTER TABLE board ADD CONSTRAINT PK_BOARD PRIMARY KEY (
+	board_nu
+);
 
+ALTER TABLE category_ID ADD CONSTRAINT PK_CATEGORY_ID PRIMARY KEY (
+	category
+);
 
+ALTER TABLE user_data ADD CONSTRAINT PK_USER_DATA PRIMARY KEY (
+	user_id
+);
 
+ALTER TABLE date_table ADD CONSTRAINT PK_DATE PRIMARY KEY (
+	creation
+);
+
+ALTER TABLE COMMENT_table ADD CONSTRAINT PK_COMMENT PRIMARY KEY (
+	comm
+);
+
+ALTER TABLE board ADD CONSTRAINT FK_user_data_TO_board_1 FOREIGN KEY (
+	user_id
+)
+REFERENCES user_data (
+	user_id
+);
+
+ALTER TABLE board ADD CONSTRAINT FK_category_ID_TO_board_1 FOREIGN KEY (
+	category
+)
+REFERENCES category_ID (
+	category
+);
+
+ALTER TABLE board ADD CONSTRAINT FK_date_table_TO_board_1 FOREIGN KEY (
+	creation
+)
+REFERENCES date_table (
+	creation
+);
+
+ALTER TABLE date_table ADD CONSTRAINT FK_board_TO_date_table_1 FOREIGN KEY (
+	board_nu
+)
+REFERENCES board (
+	board_nu
+);
+
+ALTER TABLE COMMENT_table ADD CONSTRAINT FK_board_TO_comment_1 FOREIGN KEY (
+	board_nu
+)
+REFERENCES board (
+	board_nu
+);
+
+ALTER TABLE COMMENT_table ADD CONSTRAINT FK_user_data_TO_comment_1 FOREIGN KEY (
+	user_id
+)
+REFERENCES user_data (
+	user_id
+);
+
+ALTER TABLE COMMENT_table ADD CONSTRAINT FK_date_table_TO_comment_1 FOREIGN KEY (
+	creation
+)
+REFERENCES date_table (
+	creation
+);
+
+SELECT * FROM COMMENT_table;
+SELECT * FROM board;
+SELECT * FROM user_data;
+INSERT INTO user_data
+	VALUES (1, 'ma', 'a@na.com','010-7147-5153');
+SELECT * FROM category_ID;
+insert INTO category_ID
+	VALUES ('일상', 1);
+SELECT * FROM DATE_table;
+INSERT INTO date_table
+ VALUES (sysdate, sysdate, )
+ 
+ --Q1
+ SELECT rpad(substr(empno, 1,2), LENGTH(empno), '*') as empno,
+ ename FROM emp
+ ORDER BY empno DESC;
+ 
+ 
+ 
+ --Q2
+ 
+ SELECT e.empno, e.ename, d.dname, d.loc FROM
+ emp e, dept d
+ WHERE e.deptno = d.deptno
+ ORDER BY dname DESC;
+ 
+ 
+ 
