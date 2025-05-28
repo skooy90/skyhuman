@@ -1,6 +1,6 @@
 package sec01.exam01;
 
-public class VarExam {
+public class VarExam01 {
 
 	public static void main(String[] args) {
 
@@ -83,7 +83,17 @@ public class VarExam {
 		// 사이에 코딩을 해 출력할 때 x1 
 		System.out.println("x1 : " + x1); //684684
 		System.out.println("x2 : " + x2); //26845
+	
 		
+		/* ex/
+		 * user + info
+		 * 
+		//카멜케이스 camel case
+		 * : userInfo
+		//스네이크케이스 snake case
+		 * : user_info
+		//캐밥 케이스 kebab case
+		 * : user-info
+		 */
 	}
-
 }
