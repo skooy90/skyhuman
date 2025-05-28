@@ -95,5 +95,6 @@ public class VarExam01 {
 		//캐밥 케이스 kebab case
 		 * : user-info
 		 */
+		
 	}
 }
