@@ -49,6 +49,7 @@ public class TypeCastingExam03 {
 		
 		int i3 = 3;
 		long l3 = 4L;
+		
 		long l4 = i3 + l3;
 		
 		// -> (long)i3 + l3; long으로 자동 형변환이 된다.
@@ -59,6 +60,7 @@ public class TypeCastingExam03 {
 		double d8 = i7 + d7; //-> (double) i7 + d7 ()이 생략된거다.
 		System.out.println("d8 : " + d8);
 		
+		double d12 = 5.5;
 		
 		
 //		double d9 = 10/4; // -> (int)10 / (int)4 => (int)2
