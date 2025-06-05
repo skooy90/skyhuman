@@ -99,6 +99,59 @@ public class ArrayExam02 {
 		bs[0] = bs0;
 		bs[1] = bs1;
 		
+		// 1~10까지 저장
+		// 다른 반복문에서 출력
+		int[] num = new int[10];
+		for(int i = 0; i < 10; i++) {
+			num[i] = i+1;
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			System.out.printf("num[%d] : %d\n", i,num[i]);
+		}
+		
+		int [] [] bs2 = new int[2][3];
+		bs[0] = bs0;
+		bs[1] = bs1;
+		
+		System.out.println("bs2.length :" + bs2.length);
+		System.out.println("bs2.length :" + bs2[0].length);
+		
+		
+		int [] d1 = new int[] {1,2,3,4,5};
+		int [] d2 = d1;
+		int [] d3 = {1,2,3,4,5};
+		
+		System.out.println("d2 == d1 : " + (d2 == d1));
+		System.out.println("d3 == d1 : " + (d3 == d1));
+		
+		d2[1] = 10;
+		System.out.println("d1[1] : " + d1[1]);
+		
+		int[] f = {2,4,6,5,26};
+		int[] f2 = new int[f.length];
+		
+		
+		for(int i=0; i<f.length; i++) {
+			System.out.println(f[i]);
+		}
+		
+		for(int i = 0; i <f.length; i++) {
+			f2[i] = f[i];
+			System.out.println(f2[i]);
+		}
+		
+		for(int i=0; i<f.length; i++) {
+			int data = f[i];
+			System.out.println("data: " + data);
+			
+		}
+		// 향샹된 for문
+		System.out.println("==============================");
+		for(int data : f) {
+			System.out.println("data: " + data);			
+		}
+		
 		
 /////////////////////////////////////////
 	}

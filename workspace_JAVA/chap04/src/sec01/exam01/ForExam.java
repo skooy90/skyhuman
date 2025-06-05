@@ -215,18 +215,19 @@ public class ForExam {
 		System.out.print("입력받운 정수을 입력하세요 : ");
 		int scnum2 = sc.nextInt();
 		for (int i = 1; i <= scnum2; i++) {
-			System.out.print("*");
-			for (int j = i; j >= 2 && j < scnum2; j++) {
-				if (i == 2) {
+			if (i == 1 || i == scnum2) {
+				for (i1 = 1; i1 <= scnum2; i1++) {
 					System.out.print("*");
 				}
-				System.out.println(".");
-				if (i == scnum2) {
+				System.out.println();
+			} else {
+				if (i == 2 || i == scnum2) {
 					System.out.print("*");
+				} else {
+					System.out.print(".");
+
 				}
 			}
-			System.out.println();
-			System.out.print("*");
 		}
 
 //
@@ -236,6 +237,7 @@ public class ForExam {
 		// 3 5
 		/*
 		 * +++ +.+ +++
+		 * 
 		 * 
 		 * +++++ +...+ +...+ +...+ +++++
 		 */
