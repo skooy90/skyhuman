@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>from</title>
+</head>
+
+<body>
+
+    <form>
+        text(기본값) : <input type="text"> <br>
+        text(value) : <input type="text" value="값"> <br>
+        text(placehoder) : <input type="text" placeholder="플레이스 홀더"> <br>
+        text(readonly) : <input type="text" value="고정값" readonly="true"> <br>
+        text(disabled) : <input type="text" value="고정값" disabled="true"> <br>
+        <hr>
+        password : <input type="password" name="pw" placeholder="비밀번호 입력"><br>
+        <br>
+        radio :
+        <input type="radio" name="gender" value="male">남자
+        <input type="radio" name="gender" value="female">여자
+        <input type="radio" name="gender" value="" checked="checked">비공개
+        <br>
+        <input type="radio" name="meet"> 참석
+        <input type="radio" name="meet" disabled="disabled"> 미참석
+        <br>
+        submit :
+        <input type="submit" value="제출">
+        <br>
+        checkbox :
+        <input type="checkbox" name="cb" value="1" checked="checked">생크림
+        <input type="checkbox" name="cb" value="2">초코팁
+        <input type="checkbox" name="cb" value="3">시럽
+        <input type="checkbox" name="cb" value="4" disabled="disabled">샷추가
+        <input type="checkbox" name="cb" value="5" id="pearl">
+        <label for="pearl">펄추가</label>
+        <label for="pop">
+            <input type="checkbox" value="6" id="pop"> 팝콘추가
+        </label>
+        <br>
+        file : <input type="file" value="파일 첨부">
+        <br>
+        reset : <input type="reset">
+        <br>
+        button :
+        <input type="button" value="button">
+        <br>
+        button :
+        <button type="button">button</button>
+        <br>
+        hidden : 
+        <input type="hidden" name="secret" value="123">
+        <br>
+        date :
+        <input type="date" name="date" id="date">
+        <br>
+        color :
+        <input type="color" name="color" id="color">
+        <br>
+        number:
+        <input type="number" name="number" id="number">
+        <br>
+        range:
+        <input type="range" name="range" id="range"
+        max="100"
+        min="10"
+        step="10">
+        <br>
+        <fieldset>
+            <legend>제목</legend>
+            글씨들
+        </fieldset>
+        
+    </form>
+    <!-- 
+        form의 method 종류 : get, post
+        기본 get 방식
+        action : 내가 보내고 싶은 주소 입력 (전송할 주소)
+        action의 기본값 : 지금 내 주소
+    -->
+    <hr>
+    <br>
+    <form method="get" action="https://search.naver.com/search.naver">
+        <input type="text" name="query">
+        <input type="submit" value="네이버 검색">
+
+    </form>
+    <br>
+
+    <form method="get">
+        <input type="text" name="query">
+        <input type="submit" value="네이버 검색">
+        
+    </form>
+    
+    <br>
+    <form method="post">
+        <input type="text" name="q">
+        <input type="submit" value="다음 검색">
+
+    </form>
+
+    <br>
+
+    <form method="get" action="https://www.google.com/search?">
+        <input type="text" name="q">
+        <input type="submit" value="구글 검색">
+        required :
+        <input type="text" required="required" autocomplete="autoconplete">
+        <input type="submit" value="submit">
+        <br><br>
+    </form>
+
+    <textarea rows="10" cols="100">
+        아~~~~~~~~~
+프리태그ㅏ
+    
+    </textarea>
+
+<hr>
+<br>
+
+<select name="lunch" size="5" multiple="multiple">
+    <option selected="select">종류선택</option>
+    <option value="1" >한식</option>
+    <option value="2">양식</option>
+    <option value="3" >일식</option>
+    <option value="4">식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+    <option value="4">분식</option>
+</select>
+
+
+
+
+<br><br><br>
+</body>
+
+</html>

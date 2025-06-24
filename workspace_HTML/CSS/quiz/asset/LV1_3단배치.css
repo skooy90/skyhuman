@@ -1,0 +1,36 @@
+body {
+    border: 1px solid black;
+}
+div {
+    border: 1px solid black;
+}
+.main {
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+}
+.main .title {
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+.main .title .h1 {
+    border: 1px solid green;
+    display: inline-block;
+    width: 50%;
+    font-size: 2.3em;
+    
+}
+.main .room {
+    width: 100%;
+}
+.main .room .cla1 {
+    display: inline-block;
+}
+.main .room .cla2 {
+    display: inline-block;
+}
+.main .room .cla3 {
+    display: inline-block;
+}

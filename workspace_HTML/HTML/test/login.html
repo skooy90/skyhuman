@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th colspan="3">
+                <img src="naver.PNG" alt="naver">
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <h4>
+                    <input type="button" name="1" value="ID/전화번호">
+                </h4>
+            </td>
+            <td>
+                <h4>
+                    <input type="button" name="1" value="일회용번호">
+                </h4>
+            </td>
+            <td>
+                <h4>
+                    <input type="button" name="1" value="QR코드">
+                </h4>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="text" name="id" placeholder="아이디 또는 전화번호" size="30">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="password" name="pw" placeholder="비밀번호" size="30">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="checkbox" name="logincheck">로그인 상태 유지
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <input type="submit" name="login" value="로그인">
+            </th>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <fieldset>
+                    <legend> 지문, 얼굴 인증을 설정했다면 </legend>
+                    <input type="submit" value=" 패스키 로그인">
+                </fieldset>
+            </th>
+        </tr>
+    </table>
+
+    <hr>
+    <form action="">
+
+        <table>
+            <h2>회원정보</h2>
+            <tr>
+                <td>
+                    <hr>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <legend>인적사항</legend>
+                        이 름 : <input type="text" name="id" placeholder="ID 입력요망">
+                        주민번호 : <input type="number">
+                        - <input type="number">
+                        <br>
+                        국 적 : <select>
+                            <option value="1">내국인(대한민국)</option>
+                            <option value="2">일본</option>
+                            <option value="3">중국</option>
+                            <option value="4">미국</option>
+                        </select>
+                        <br>
+                        취득 자격증 : <select multiple="multiple" size="1">
+                            <option value="1">정보처리기사1급</option>
+                            <option value="2">정보처리기사2급</option>
+                            <option value="3">정보처리산업기사1급</option>
+                            <option value="4">처리기사1급</option>
+                            <option value="5">정기사1급</option>
+                        </select>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <legend>학년 & 학년</legend>
+                        성별 : <input type="radio" name="gender" value="1">남성
+                        <input type="radio" name="gender" value="2">여성
+                        <br>
+                        학년 : <input type="radio" name="class" value="1"> 1학년
+                        <input type="radio" name="class" value="2"> 2학년
+                        <input type="radio" name="class" value="3"> 3학년
+                        <input type="radio" name="class" value="4"> 4학년
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <legend>취미</legend>
+                        <input type="checkbox" name="hoddy" value="1">독서
+                        <input type="checkbox" name="hoddy" value="2">낚시
+                        <input type="checkbox" name="hoddy" value="3">야구
+                        <input type="checkbox" name="hoddy" value="4">기타
+
+                    </fieldset>
+            </tr>
+            </td>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <legend>메모사항</legend>
+                        <textarea name="note" rows="5" cols="90">메모글을 남겨 주세요</textarea>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    첨부 서류 : <input type="file" name="file">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="저장하기">
+                    <input type="reset" value="다시 입력하기">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+
+
+
+</body>
+
+</html>

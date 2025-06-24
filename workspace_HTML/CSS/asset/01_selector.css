@@ -1,0 +1,144 @@
+/* css 주석 */
+/* 전체 선택자 */
+        * {
+            color: aqua;
+
+        }
+
+        /* 태그 선택자 */
+        h1 {
+            color: darkred;
+        }
+
+        h2 {
+            font-size: 400%;
+        }
+
+        /* ID 선택자*/
+        #a1 {
+            color: black;
+        }
+
+        /* class 선택자 */
+        .c1 {
+            background-color: green;
+            color: blue;
+        }
+
+        .bigText {
+            font-size: 30px
+        }
+
+        #div1 {
+            background-color: gray;
+        }
+
+        /* 마우스 올렸을 때 */
+        #div1:hover {
+            background-color: yellow;
+        }
+
+        /*클릭을 했을때*/
+        #div1:active {
+            font-size: 20px;
+            color: black;
+        }
+
+        .text11:focus {
+            background-color: yellow;
+        }
+
+        /* 누군가의 첫째 자식 */
+        li:first-child {
+            color: brown;
+        }
+
+        ul:first-child {
+            font-size: 30px;
+        }
+
+        /* 실제 등장하는 요소 중 첫번째*/
+        ul:first-of-type {
+            text-decoration: underline;
+        }
+
+
+        tr:nth-child(2n-1) {
+            background-color: gray;
+        }
+
+        h3:after {
+            content: "AFTER";
+            font-size: 10px;
+            color: black;
+        }
+
+        h3:before {
+            content: "BRFORE";
+            font-size: 10px;
+            color: black;
+        }
+
+        /*다중 선택자 */
+        /* li {
+            border: 1px solid red;
+        }
+        h3 {
+            border: 1px solid red;
+        } */
+        li,
+        h3,
+        #div1 {
+            border: 1px solid red;
+        }
+
+        /* > : 바로 아래 자식 요소 만*/
+        #ol>li {
+            color: black;
+        }
+
+        /* 띄어쓰기 : 자손들 모두를 대상으로 */
+        #ol li {
+            border: 1px solid black;
+        }
+
+        li[data-seq^="title_"] {
+            color: green;
+        }
+
+        /* li[data-seq$="_title"]{
+            color: green;
+        } */
+         input[type=password]:focus{
+            background-color: yellow;
+         }
+
+         /* 부정 선택자 */
+         /* 부정으로 ~가 아닌 애들은
+          :not(.class){
+            color: cornflowerblue;
+         }  */
+         /* 속성 값  중에서  단어로 존재(공백으로 분리)*하는 것을 찾아 줌*/
+         input[class~="c4"]{color: gray;}
+         
+         /* 포함 되느 것을 선택*/
+         input[class*="c4"]{color: gray;}
+
+         ::selection {
+            background-color: rebeccapurple;
+         }
+         
+         input[type=checkbox]:checked {
+            width: 50px;
+            height: 50px;
+         }
+         input[type=checkbox]:checked + span {
+            font-size: 40px;
+         }
+
+         #s1{
+            background-color: blue;
+         }
+         span {
+            background-color: yellow !important;
+         }

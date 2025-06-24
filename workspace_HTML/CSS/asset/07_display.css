@@ -1,0 +1,61 @@
+#div {
+    border: 1px solid red;
+    text-align: center;
+}
+
+.block {
+    border: 1px solid red;
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.inline {
+    border: 2px solid rebeccapurple;
+    /* 너비 높이는 줄 수 없다 
+    width: 200px;
+    height: 50px;
+    */
+    /* margin도 위아래는 안된다.
+    좌우만 가능하다. */
+    margin: 30px 50px;
+    /* padding은 4방향 가능하다. (위아래는 에매)
+    단, 위아래는 적용 보단 border만 늘어 난건다.*/
+    padding: 20px;
+    /* display: block; */
+}
+.bg_blue {
+    
+    background-color: blue;
+    color: #ffffff;
+    
+}
+.parent {
+    border: 2px dotted rgb(137,119,173);
+    /* width: 200px; */
+    box-sizing: border-box;
+    width: 100%;
+}
+.parent > div {
+    border: 1px dashed rgb(137,119,173);
+    /* width: 40%; */
+    width: 200px;
+    height: 50px;
+    display: inline-block;
+    /* 인라인, 인라인 블록에만 적용 됨 */
+    vertical-align: top;
+}
+
+.hide {
+    display: none;
+}
+.table {
+    display: table;
+}
+.table .td {
+    display: table-cell;
+    border: 1px solid rgb(137,119,173);
+    height: 100px;
+    width: 200px;
+    vertical-align: middle;
+}

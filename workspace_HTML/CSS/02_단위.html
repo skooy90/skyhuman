@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단위</title>
+    <style>
+        /* 해당 디스플레이에서 절대적인 값 */
+        #pixel .box1{
+            font-size: 16px;
+            background-color: rgb(255,0,0);
+        }
+        #pixel .box1 .box2{
+            font-size: 30px;
+            background-color: rgba(255, 190, 152, 1);
+        }
+        #pixel .box1 .box2 .box3{
+            font-size: 16px;
+        }
+        /* 상대적인 크기 */
+        #percent .box1{
+            font-size: 150%;
+            background-color: #a47864;
+        }
+        #percent .box1 .box2{
+            font-size: 150%;
+            background-color: #00ff00d0;
+        }
+        #percent .box1 .box2 .box3{
+            font-size: 150%;
+        }
+        
+        #em .box1{
+            font-size: 1.5em;
+            border : 1px solid red;
+            margin: 10px;
+        }
+        #em .box1 .box2{
+            font-size: 1.5em;
+            border : 1px solid red;
+            margin: 10px;
+        }
+        /* rem : root em 바디태그의 기본값*/
+        #em .box1 .box2 .box3{
+            font-size: 1rem;
+            border : 1px solid red;
+            margin: 10px;
+        }
+        
+        #v1, #v2, #v3, #v4 {
+            border : 1px solid greenyellow;
+            margin: 10px;
+            
+        }
+        /* 블라우저에서 화면을 높이에 맞게 꽉  차게 해주는설정 100 단위 */
+        #v1{
+            height: 50vh;
+        }
+        
+        /* 블라우저에서 화면을 너비에 맞게 꽉  차게 해주는설정 100 단위 */
+        #v2{
+            width: 50vw;
+        }
+        /* 모바일 환경에서 쫍은쪽을 기준으로 100단위로 쪼갬 */
+        #v3{
+            height: 50vmin;
+        }
+        
+        /* 모바일 환경에서 큰쪽을 기준으로 100단위로 쪼갬 */
+        #v4{
+            height: 50vmax;
+        }
+        
+
+    </style>
+</head>
+<body>
+abc 기본 글씨 ABC 123
+<div id = "pixel">
+    <div class="box1">
+        아~ 옛날이여~~~~~
+        <div class="box2">
+            양한마리
+            <div class="box3">
+                양이 두마리
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div id = "percent">
+    <div class="box1">
+        150%
+        <div class="box2">
+            150%
+            <div class="box3">
+                150%
+            </div>
+        </div>
+    </div>
+</div>
+<div id = "em">
+    <div class="box1">
+        150%
+        <div class="box2">
+            150%
+            <div class="box3">
+                150%
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="v1">v1 vh</div>
+<div id="v2">v2 vw</div>
+<div id="v3">v3</div>
+<div id="v4">v4</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'Galmuri11-Condensed';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri11-Condensed.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'SF_HambakSnow';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff') format('woff');
+    
+    font-weight: normal;
+    font-style: normal;
+}
+#p1 {
+    color: red;
+    /* text-decoration : line-through; */
+    text-decoration : underline;
+    /* text-decoration : none; */
+    font-family: 'Galmuri11-Condensed', 'Arial';
+    /* font-family ,뒤는 b플랜으로 기본 폰트를 적용해논다. */
+    
+}
+#a1 {
+    text-decoration : none;
+    font-family: 'SF_HambakSnow';
+}
+
+input[type=checkbox]:checked + span {
+    text-decoration : line-through;
+    color : gray;
+}
+
+.size {
+    /* 기본 16px이 기본 사이즈 */
+    /* font-size: small; */
+    /* font-size: 32px; */
+    /* font-size: 200%; */
+    /* font-size: 3em; */
+    /* font-size: rem; */
+    font-size: rem;
+}
+
+.style {
+    font-style: italic;
+    /* 기울러짐 */
+}
+
+em {
+    font-style: normal;
+}
+
+.fw-100 {
+   font-weight: 100; 
+}
+
+.fw-400 {
+   font-weight: 400; 
+   /* 기본값 */
+}
+
+.fw-900 {
+   font-weight: 900; 
+}
+
+.fw-2000 {
+   font-weight: 2000; 
+   /* 100~900까지여서 의미없다. 
+    기본값으로 변경됨. */
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+.fake {
+    font-size: 2em;
+    font-weight: bold;
+}
+.align-right {
+    text-align: right;
+    border : 1px solid red;
+}
+.align-center {
+    text-align: center;
+}
+.align-left {
+    text-align:left;
+}
+.align-justify {
+    border : 1px solid red;
+    text-align:justify;
+}
+.spacing {
+    letter-spacing: -0.01em;
+    /* 글 간격 */
+}
+
+.lh {
+    line-height: 500%;
+    /* 줄의 높이  */
+}
+.middle {
+    border: 1px solid rebeccapurple;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+.nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    /* 1.한줄로 바꾸기 */
+    /* 2.범위 벗어난것은 짤린거 */
+    /* 3.짤린거 ... 으로 표현하기 */
+    /* 1~3은 세트 */
+
+    border: 1px solid rebeccapurple;
+}
+
+.text {
+    border: 1px solid red;
+    width: 200px;
+}
+
+.word-wrap { 
+    word-wrap: break-word;
+    /* 한 단어가 길어 뛰어나갈때 튀어 
+    나가니깐 단어 중간에서 자동 줄 넘김*/
+
+}
+.word-break {
+    word-break: break-all;
+}
+
