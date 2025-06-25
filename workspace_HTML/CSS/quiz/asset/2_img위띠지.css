@@ -1,0 +1,21 @@
+.main {
+    width: 50vw;
+    position: relative;
+}
+.img {
+    display: inline-block;
+    width: 100%;
+    z-index: 0;
+}
+
+.font {
+    background-color: gray;
+    display: inline-block;
+    border: 1px solid red;
+    width: 400px;
+    font-size: 40px;
+    position: relative;
+    top: -850px;
+    left: 40%;
+    z-index: 1;
+}

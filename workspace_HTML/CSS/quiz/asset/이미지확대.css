@@ -1,0 +1,50 @@
+.main {
+    border: 1px solid red;
+    width: 550px;
+    font-size: 0px;
+}
+.minimap {
+    vertical-align: top;
+    border: 1px solid blue;
+    display: inline-block;
+}
+.minimap div {
+    border: 1px solid green;
+}
+.mp1 {
+    width: 130px;
+}
+.mp2 {
+    width: 130px;
+}
+.mp3 {
+    width: 130px;
+}
+
+.p1 {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+}
+.p2 {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+    display: none;
+}
+.p3 {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+    display: none;
+}
+
+.mp1:hover + .p1 {
+    display: block;
+}
+.mp2:hover + .p2 {
+    display: block;
+}
+.mp3:hover +.p3 {
+    display: block;
+}

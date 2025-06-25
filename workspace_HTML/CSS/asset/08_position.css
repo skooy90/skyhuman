@@ -1,0 +1,134 @@
+body {
+    height: 200vh;
+
+}
+
+div {
+    border: 1px solid aqua;
+}
+
+.parent{
+    width: 100px;
+    background-color: green;
+    color: white;
+    margin: 20px;
+
+}
+.child {
+    width: 90px;
+    background-color: rgba(235,23,32,0.5);
+
+}
+.relative {
+    /*
+    relative가 있어야한다.
+        원래 위치를 기준으로 이동
+        top, left, right, bottom
+        원래 내가 가지고 있던 공간이 유지된다.
+    */
+    position: relative;
+    top: 0;
+    left: 0;
+    top:10px;
+    /* left: -10px; */
+    /* top: 50%; */
+    left: 25%;
+
+}
+.absolute {
+    /* 부모중에 relative(없으면 boby기준)으로 이동 
+    top, left, rifht,bottm
+    원래 내가 있던 공간은 없어진다.*/
+    position: absolute;
+    top: 0;
+    left: 0px;
+    /* left: -10000px; */
+}
+.absolute-bottom {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.fixed {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.sticky {
+    position: sticky;
+    top: 20px;
+}
+
+.rel {
+    position: relative;
+}
+.rel:hover{
+    z-index: 9999;
+}
+
+.z1 {
+    background-color: hotpink;
+
+    top: 10px;
+    left: -15px;
+    z-index: 2;
+}
+.z2 {
+    background-color: brown;
+    top: -5px;
+    left: -5px;
+    z-index: 1;
+}
+.z3 {
+    background-color: blue;
+    top: -15px;
+    left: -10px;
+}
+
+ul.main{
+    background-color: yellow;
+}
+/* .sub와 같다 */
+ul.main + ul{
+    position: relative;  
+    background-color: aqua;
+    top: -16px;
+    left: -10px;
+    display: none;
+}
+ul.main:hover + ul {
+    display: block;
+}
+ul.sub:hover {
+    display: block;
+}
+.c1 {
+    position: absolute;
+    top: 10px;
+    left: 300px;
+}
+
+.p1 {
+    position: relative;
+}
+
+.p2 {
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.c2 {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: calc( (200px / 2) - (100px / 2) );
+    left: calc( (200px / 2) - (100px / 2) );
+}
+
