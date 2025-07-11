@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transition: all 0.5s;
+            /* 갓다 올때 transition이 적용 */
+            display: inline-block;
+        }
+        div:hover{
+            background-color: blue;
+            height: 200px;
+            border-radius: 19px;
+            /* transition: all 1.5s; */
+            /* hover일때니깐 돌아올때는 안먹는다 */
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

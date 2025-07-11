@@ -1,0 +1,44 @@
+article img {
+    float: left;
+}
+.box {
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+.box.left{
+    float: left;
+    border: 1px solid blue;
+}
+.box.right{
+    float: right;
+}
+.d1{
+    background-color: rgba(102, 51, 153, 0.377);
+}
+.d2{
+    /* width: 100%; */
+    background-color: yellowgreen;
+}
+.d3{
+    background-color: aqua;
+}
+.clear {
+    clear: both;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.logo{
+    /* margin: auto; */
+    background-color: darksalmon;
+    width: 100px;
+    display: inline;
+}
+.manu {
+    text-align: center;
+}

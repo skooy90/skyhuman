@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #view {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+        .big {
+            font-size: 2em;
+        }
+        [data-food="아프다"]{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">dom 연습</h1>
+
+    <div id="view">첫번쟤 #view</div>
+    <div id="view">두번쟤 #view</div>
+
+    <div class="div2">첫번째 .div2</div>
+    <div class="div2">두번째 .div2</div>
+
+    <!-- #parent .div2 -->
+    <div id="parent">
+        <div class=" child div2" data-food="아프다" > 안쪽 .div2</div>
+    </div>
+    <img src="https://i.pinimg.com/736x/d0/d7/98/d0d798e5a0ac6c0bdd0496eecf6ca568.jpg" alt="사진">
+    <script>
+        //document : html 문서 전체를 뜻 함
+
+        // getElementById : 
+        //      속성 id의 값을 이용해서 dom을 가져온다
+        let title = document.getElementById('title');
+        console.log(title);
+        console.log("dlddld"+title);
+        
+
+        // document : 문서 전체에서
+        // 요소가 없는 경우 null
+        let test = document.getElementById('test');
+        console.log(test);
+        
+        // id가 여러개인경우 첫번째 dom만 가져온다
+        let view = document.getElementById('view')
+        console.log( view );
+
+        // tag 명으로 DoM 찾기
+        // 일치하는 모든 DOM을 배열로 돌려준다
+        let divs = document.getElementsByTagName('div');
+        console.log( divs );
+        // 한개짜리도 배열온다
+        let h1s = document.getElementsByTagName('h1');
+        console.log( h1s );
+        // 엇어도 size가 0인 배열로 온다
+        let humans = document.getElementsByTagName('human');
+        console.log( humans );
+       
+        let div2 = document.getElementsByClassName('div2');
+        console.log(div2);
+
+        let parent = document.getElementById('parent')
+        console.log(parent);
+        let div3 = parent.getElementsByClassName('div2')
+        console.log(div3);
+
+        // querySelector 
+        // css 선택자를 이용할 수 있다
+        // 하나의 dom만 돌려준다
+        // all은 배열로 돌려준다
+        // 없으면 null
+        // 배열은 사이즈 0
+        let qs1 =document.querySelector('#parent .div2');
+        console.log (qs1);
+
+        console.log('------------------------------------')
+
+        let qs2 = document.querySelector('.div2')
+        console.log(qs2);
+        
+        console.log ( document.querySelectorAll ('#div2'))
+
+        let qs3 = document.querySelectorAll('.div2');
+        console.log(qs3);
+        
+        // class 속성 값 조작 
+
+        let child = document.querySelector('#parent .div2');
+        // classList : class를 배열 형식으로 돌려줌
+        console.log(child.classList);
+
+        // add : 클래스 추가        
+        // 중복해서 : 추가되지 않는다
+        child.classList.add('blue');
+        child.classList.add('big');
+
+        child.classList.remove('blue');
+        child.classList.remove('big');
+
+        // toggle: 있으면 remove, 없으면 add
+        child.classList.toggle('blue');
+        child.classList.toggle('blue');
+        child.classList.toggle('blue');
+        child.classList.toggle('blue');
+        
+        // contains 해당 클래스가 있는 확인 하는법
+        let isblue = child.classList.contains('blue');
+        console.log(isblue);
+        
+        // 클래스 이름을 알려줌
+        console.log(child.className);
+        
+        if(isblue){
+            child.classList.remove( 'blue' );
+            
+        } else {
+            child.classList.add('blue');
+        }
+        
+        let food = document.querySelector('[data-food=아프다]');
+
+        let img = document.querySelector('img');
+
+        // 속성명이 있는지 검사
+        let isScr =img.hasAttribute('src');
+        console.log(isScr)
+        // 속성이 없으면 null
+
+        let src = img.getAttribute('src')
+        console.log(src);
+
+
+        //setAttribute(속성명, 속성값)
+        // 속성이 없으면 속성을 만들고 
+        // 속성이 있으면 덮어쓴다.
+
+        img.setAttribute('data-human', '1강이실')
+        img.setAttribute('data-human', '10강이실')
+        
+
+        setInterval(function(){
+            img.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/4/44/210604_%EA%B3%A0%EC%9C%A4%EC%A0%95%282%29.jpg')
+            img.remove();
+        }, 3000)
+
+        img.removeAttribute('data-human')
+        </script>
+
+
+
+</body>
+</html>

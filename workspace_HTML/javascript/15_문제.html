@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="asset/js/15_문제.js"></script>
+    <style>
+        #board_3{
+            display: flex;
+            border: 1px solid red;
+            width: 600px;
+            justify-content : space-around
+        }
+        #sel:hover{
+            font-weight: 600;
+            font-size: 20px;
+            cursor: pointer;
+            color: aqua;
+            text-decoration: underline;
+        }
+        .jun{
+            display: flex;
+            flex-direction: column;
+        }
+        .sjun{
+            border: 1px solid rebeccapurple;
+            margin: 10px;
+            
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 문제 0 단계
+    플레스 홀더로 이름이 있고 옆에 신청 버튼이 있다
+    인풋에 이름을 쓰고 신청 누르면 
+    밑에 이름 생기기
+
+    1단계
+    주문자와 배송자가 같다란 버튼 클릭시 배송 정보 복사 
+    주문 정보           배송정보
+                        주문 정보와 같다. 선택란이 있어 누르면
+    주문자 최민수           이름
+    주소    천안시          주소
+    연락처 010있고          연락처 가 같게 나오게 하기
+
+    2단계
+    메뉴가 여러개일때 선택한 메뉴만 특이하게 보일때 
+    상품에 인기상품순, 높은 가격순 , 신상품순, 상품평 많은순
+
+    3단계
+    작은 이미지 큰이미지로 나오게 하는 썸네일 큰 그림 변경 및 유지하게 하게
+
+    4단계 
+    피자 주문 시스템  속성은 내맘대로 할수있지
+    
+    피자 주문
+    사이즈      radio
+    토핑        checkbox
+    도우 종류   select
+    
+    주문 버튼 
+    주문 정보
+    사이즈 - 표시
+    토핑 - 표시
+    도우 종류 - 표시
+    합계 : 금액
+
+    5번
+    TODO
+    할일 목록 관리 시스템
+    할일할 인풋 추가할 인풋
+    전체 선택 있고 선택 삭제란 있음
+    체크란 할일 삭제란 있고
+    체크시 취소선 생성
+
+    
+    -->
+    <!-- 문제 0 단계
+    플레스 홀더로 이름이 있고 옆에 신청 버튼이 있다
+    인풋에 이름을 쓰고 신청 누르면 
+    밑에 이름 생기기 -->
+    <h1>문제 1</h1>
+    <div>
+        <input type="text" id="text_1" placeholder="신청자 이름 작성">
+        <input type="button" id="submit_1" value="등록">
+    </div>
+    <div id="board">신청자 목록</div>
+    
+    <br>
+    <h2>문제2</h2>
+    <div>
+        <h3>주문 정보</h3>
+        <div>주문자 <input type="text" id="name_1" ></div>
+        <div>주소지 <input type="text" id="juso_1"></div>
+        <div>연락처 <input type="text" id="phonnum_1"></div>
+    </div>
+    <div>
+        <h3>배송 정보</h3>
+        <input type="checkbox" id="moonsame_2">주문 정보와 일치
+        <div>배송 자 <input type="text" id="name_2"></div>
+        <div>주소지 <input type="text" id="juso_2"></div>
+        <div>연락처 <input type="text" id="phonnum_2"></div>
+    </div>
+
+    <hr>
+    <h2>3번</h2>
+    <div id="board_3">
+        <div id="sel" class="rosel">금액이 낮은 순</div>
+        <div id="sel" class="hisel">금액이 높은 순</div>
+        <div id="sel" class="hicl">조회순이 높은 순</div>
+        <div id="sel" class="rocl">조회순이 낮은 순 </div>
+    </div>
+    <div class="jun">여기는 상품 전시공간
+        <div class="sjun "> 한개상품의 공간
+            <div class="sname">상품명 : 이어폰 </div>
+            <div >가격 : <span class="sspace">30000</span>원 </div>
+            <div >눈팅 수 :  <span class="ssee">22</span> </div>
+            <div class="sbuy">구매 수 : 5 </div>
+        </div>
+        <div class="sjun"> 한개상품의 공간
+            <div class="sname">상품명 : 헤드셋</div>
+            <div>가격 : <span class="sspace">4000</span>원</div>
+            <div >눈팅 수 : <span class="ssee">20</span></div>
+            <div class="sbuy">구매 수 : 4</div>
+        </div>
+        <div class="sjun"> 한개상품의 공간
+            <div class="sname">상품명 : 신발</div>
+            <div >가격 : <span class="sspace">50000</span>원</div>
+            <div >눈팅 수 : <span class="ssee">31</span></div>
+            <div class="sbuy">구매 수 : 2</div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

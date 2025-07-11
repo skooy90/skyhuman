@@ -19,12 +19,19 @@ public class Clac {
 		System.out.println("intdouble 실행"); 
 		return x + y;
 	}
-	int plus (int x) {
-		System.out.println("int 실행");
-		int result = x + x;
-		return result;
-	}
+//	int plus (int x) {
+//		System.out.println("int 실행");
+//		int result = x + x;
+//		return result;
+//	}
 	
+	void plus(int x, int y) {
+		int z = x + y;
+		System.out.println( "z : "+ z);
+	}
+	void plus(int x) {
+		System.out.println( "x : "+ x);
+	}
 			
 /////////////////////////////
 }

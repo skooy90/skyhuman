@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="asset/js/13_event_mouse.js"></script>
+    <style>
+        .mouse {
+            border: 2px solid rebeccapurple;
+            width: 100px;
+            height: 100px;
+            margin: 30px;
+        }
+
+        .wrap {
+            display: flex;
+        }
+        #cursor{
+            position: absolute;
+        }
+        #drag{
+            position: absolute;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div>
+            <div id="mouse" class="mouse"></div>
+            <div id="drag" class="mouse">drag me</div>
+        </div>
+        <div id="view"></div>
+
+    </div>
+    <img id="cursor" style="width: 64px;" src="asset/img/icon-penguin.png">
+</body>
+
+</html>

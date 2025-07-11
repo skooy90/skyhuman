@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./asset/js/12_evnt.js"></script>
+    <style>
+        body {
+        height: 200vh;
+        }
+        #top{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+        #game {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+    </style>
+</head>
+<!-- <body onload="javascript:init()"> -->
+<body>
+    <div style="display: flex;">
+        <div>
+            <button type="button" id="btn1">버튼1</button><br>
+            <button type="button" id="btn2">버튼2</button><br>
+            <button type="button" id="btn3" onclick="btnClick();">버튼3</button>
+            <br>
+            <br>
+            <div>
+                아이디 : <input type="text" id="id"><br>
+                비밀번호 : <input type="password" id="pw"><br>
+                <br>
+                <input type="button" id="login" value="로그인">
+            </div>
+        </div>
+        <div id="console"></div>
+    </div>
+        <button type="button" id="top"> 맨 위로 </button>
+        <img id="game" src="asset/js/다운로드.webp" alt="사진">
+</body>
+</html>

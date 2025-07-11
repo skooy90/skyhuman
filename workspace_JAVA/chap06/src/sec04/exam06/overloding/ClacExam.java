@@ -8,7 +8,8 @@ public class ClacExam {
 		ca.plus(15.5, 12.5);
 		ca.plus(15, 12.5);
 		
-		
+		ca.plus(3);
+		ca.plus(3, 5);
 		
 		
 		System.out.println("문자");

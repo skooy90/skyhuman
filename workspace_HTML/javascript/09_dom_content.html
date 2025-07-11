@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            height: 100px;
+        }
+    </style>    
+</head>
+
+<body>
+    <div id="msg">
+        <span> 원래 qwdqwdqwdqwdqw </span> 있던 글씨
+    </div>
+    <div class="like">❤️</div>
+    <span style="color: red;">당연</span>
+    <a class="ms2" href="https://naver.com" target="_blank" style="text-decoration: none;">네이버</a>
+
+    <div id="tag">글씨 였던 아름다운 추억</div>
+    <table>
+        <tbody id="tbody2">
+            <!-- <tr>
+                <td>첫째칸</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <tbody id="tbody3">
+            <!-- <tr>
+                <td>제목1</td>
+                <td>작성자1</td>
+            </tr> -->
+            <!-- <tr>
+                <td>제목2</td>
+                <td>작성자2</td>
+            </tr> -->
+            <!-- <tr>
+                <td>첫째칸</td>
+            </tr> -->
+        </tbody>
+    </table>
+
+    <hr>
+    <h1 id="h1"> style 테스트 </h1>
+
+
+
+    <script>
+        let msg = document.querySelector('#msg');
+        console.log(msg);
+        let like = document.querySelector('.like');
+
+        // textContent
+        // 컨텐츠 영역의 소스 중 text만 그대로 가져온다.
+        console.log('textContent :', msg.textContent);
+        // innerText
+        // 브라우저에 보이는 그대로
+        // 브라우저가 계산을 끝내고 실제로 표시하는 내용
+        console.log('innerText :', msg.innerText);
+
+        // innerHTML
+        // 컨텐츠 영역의 소스를 가져온다
+        console.log('innerHTML : ', msg.innerHTML);
+
+        // 컨텐츠를 변경해줌
+        // 그런데 tag도 글씨로 인식한다.
+        msg.textContent = "<h1>h1제목</h1>  a b  c";
+        msg.innerText += "<h1>h1제목</h1>  a b  c"
+
+        msg.innerHTML += "<h1>h1제목</h1>  a b  c"
+        // 보안때문에 막힘 ↓
+        // msg.innerHTML += "<script>alert(1)<"+"/script>"
+        msg.innerHTML = msg.innerHTML + " d";
+        document.innerHTML += document.querySelector('.like'), "❤️❤️❤️";
+
+
+        /*
+            <div> = id ="menu" style = "color : red;">
+                점메추
+            </div>
+        */
+        // createElement : DOM 요소 생성
+        let div = document.createElement("div") // <div></div>
+        div.setAttribute('id', 'menu');
+        div.setAttribute('style', 'color: red; font-size: 1.3em;');
+        div.innerHTML = "점메츄";
+        let div2 = document.createElement("div") // <div></div>
+        div2.setAttribute('id', 'menu');
+        div2.setAttribute('style', 'color: red; font-size: 1.3em;');
+        div2.textContent = "점메츄2";
+        let div3 = document.createElement("div") // <div></div>
+        div3.setAttribute('id', 'menu');
+        div3.setAttribute('style', 'color: red; font-size: 1.3em;');
+        div3.textContent = "점메츄3";
+
+        let div4 = document.getElementById('tag');
+        const tag = document.querySelector('#tag');
+
+        // 속성을 추가한다
+        // append : 마지막 자식 요소로 추가된다.
+        //          글씨도 넣을 수 있다.
+        //          DOM을 넣을 수 있다.(tag는 text로 들어간다.)
+
+        // append는 글씨, dom 둘다 가능하다
+        tag.append(div);
+        tag.append('그냥 글씨');
+        tag.append('<strong>그냥 글dd씨</strong>');
+
+        // append Child : 마지막 자식 요소로 추가된다
+        //dom만 넣을 수 있다.
+        tag.appendChild(div2);
+        // tag.appendChild( '글씨가 안됨'); Child는 글씨는 적용이 안된다.
+        // dom만 들어간다
+
+
+        // prepend는 자식의 맨앞으로 간다
+        tag.prepend(div3);
+        // tag.prepend("new")
+
+        // 다음 형제 요소로 추가됨
+        tag.after(div3)
+        // 형제 이전 요소로 추가됨
+        tag.before(div3)
+
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.innerText = "첫번째";
+        tr.append(td);
+        document.querySelector('#tbody2').append(tr);
+
+
+        tr.innerHTML = '<td>첫번째 칸</td>'
+        document.querySelector('#tbody2').append(tr);
+        // 위에 작성 안 하고 이것만 써도 됨
+        // document.querySelector('#tbody2')
+        // .innerHTML = "<tr> <td> 첫 번째 칸 </td> </tr>"
+
+        const row1 = ['제목1', '작성자1'];
+        const row2 = ['제목2', '작성자2'];
+        const row3 = ['제목3', '작성자3'];
+        const row4 = ['제목4', '작성자4'];
+        const row5 = ['제목5', '작성자5'];
+
+        const row = [];
+        row.push(row1);
+        row.push(row2);
+        row.push(row3);
+        row.push(row4);
+        row.push(row5);
+        // <tr>
+        //         <td>제목1</td>
+        //         <td>작성자1</td>
+        // </tr>
+        const tbody3 = document.querySelector('#tbody3');
+        // for (let i = 0; i < row.length; i++){
+        //     const html = `
+        //     <tr>
+        //         <td>${row[i][0]}</td>
+        //         <td>${row[i][1]}</td>
+        //     </tr>
+        //     `;
+        //     tbody3.innerHTML += html;
+        // }
+
+
+        // let html = ''; 
+        // for (let i = 0; i < row.length; i++){
+        //     html += ` 
+        //     <tr>
+        //         <td>${row[i][0]}</td>
+        //         <td>${row[i][1]}</td>
+        //     </tr>
+        //     `;
+        // }
+        // tbody3.innerHTML += html;
+
+        for (let i = 0; i < row.length; i++) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row[i][0]}</td>
+                <td>${row[i][1]}</td>
+                `;
+            tbody3.append(tr);
+        }
+        const h1 = document.getElementById("h1");
+
+        const script = document.createElement('script');
+        // script.innerHTML = 'alert(1)';
+        h1.after( script );
+        (
+        function a() {
+            console.log(1111)
+        }
+        )();  // 실행의 ()
+
+
+        //동적js의 시작
+        h1.setAttribute('style', 'background-color: blue;');
+
+
+        // js에서 이야기 안한건 안나온다
+        console.log( 'Height : ', h1.style.height );
+        console.log( ' typeof Height : ',typeof h1.style.height )
+
+
+        h1.style.color = 'red';
+        h1.style.height = '150px';
+
+        // js에서 바꾼 값은 변수에 저장이 된거니깐 저장이 된다
+        // CSS에서 -로 연결되는 프로퍼티 명은
+        // 카멜케이스(대문자로 연결하는)로 변경하면 된다
+        // background-color -> backgroundColor
+
+
+        console.log( 'Height : ', h1.style.height );
+        console.log( ' typeof Height : ',typeof h1.style.height )
+
+        // javascript로 지정한 모든 스타일 덮어쓰기
+        h1.style.cssText = 'font-size: 40px';
+
+        let w = window.getComputedStyle(h1, null).getPropertyValue("width");
+        console.log ('h1.style.width : ',h1.style.width);
+        console.log ('w :' ,w);
+        h1.style.width = (w+100) + "px";
+        console.log ('w :' ,w);
+        
+    </script>
+</body>
+
+</html>

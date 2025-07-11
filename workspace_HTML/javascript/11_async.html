@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function fn1(){
+            console.log('fn1 실행');
+            fn2();
+            console.log('fn2 호출끝');
+        }
+        
+        function fn2(){
+            console.log('fn2 실행');
+            fn3();
+            fn3();
+            
+                console.log("낑깐논거1")
+            setTimeout( function(){
+                console.log("낑깐논거 2")
+            }, 0 );  //비동기
+            // ↑의 setTimeout은 뒷 시간이(0) 이후에
+            //  제일 한가한 시간에 작동한다
+            setTimeout( function(){
+                console.log("낑깐논거 3")
+            }, 0 );  //비동기
+            // 세팅 초시간에 같은 시간대에 순서는 정해진다 
+            fn3();
+            fn3();
+        }
+        function fn3(){
+            console.log('fn3 실행')
+        }
+        fn1();
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let str = "오늘 저녁 때 저녁 뭐 먹지?";
+        console.log('str.legth :', str.length);
+
+        // indexOf
+        // 전달인자와 동일한 글씨가 있는 경우
+        //  첫번째 만나는 요소의 첫 index를 돌려 줌
+        // 동일한 글씨가 없을 경우 -1를 돌려준다
+        console.log(str.indexOf('저녁') );
+        console.log(str.indexOf('점심') );
+
+        // replace 는 1 전달인자를 2전달인자로 바꿔주는 역할 
+        // 단, 1개만
+
+        let str2 = str.replace('저녁','회식');
+        console.log(str)
+        console.log(str2)
+        let str22 = str2.replace('저녁','회식');
+        console.log('여기보세요',str22)
+
+        
+        // 정규표현식으로 인한 전체 코드 변경
+        let str3 = str.replace(/저녁/g, '회식');
+        console.log(str)
+        console.log(str3)
+        
+
+        //시작, 끝 바로 앞
+        let str4 = str.substring(3, 7);
+        console.log(str)
+        console.log(str4)
+        
+        // 시작, 몇 개
+        let str5 = str.substr(3, 4);
+        console.log(str)
+        console.log(str5)
+
+
+        // 문제 1 : 메일 아이디만 뽑기 
+
+        let mail = "skooy90@naver.com";
+        
+        let id = mail.split("@");
+        console.log(id[0]);
+        
+        mail = "hehehehehehehehe@naver.com";
+        let idn = mail.indexOf("@");
+        let id2 = mail.substring(0,idn);
+        console.log(id2);
+        
+        // 문제 2 : 메일 주소 앞 두자리를 제외한 id는 *처리
+        // todair@naver.com >> to****@naver.com
+        
+        mail = "skooy90@naver.com";
+        let showCnt = 2;
+        let idn2 = mail.substr(0, showCnt); 
+        let count = id[0].length - showCnt;
+        idn = mail.indexOf("@");
+        for(let i=0; i<count; i++){
+            idn2 += '*';
+        }
+        idn2 += mail.substring(idn);
+        console.log(idn2);
+
+
+
+        // 문제 3 : 인터넷 주소 중 2차 도메인 즉 comic.naver.com 에서 
+        // naver만 출력하기
+        //  human.or.kr이면 or만
+
+        let domain = "comic.naver.com";
+        domain = "hu.m.an.or.kr";
+        let domain2 = domain.split(".");
+        let domain3 = domain2.length-2;
+        console.log(domain2[domain3]);
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

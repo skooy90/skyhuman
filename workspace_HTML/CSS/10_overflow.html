@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>overflow</title>
+    <style>
+        .p {
+            border: 1px solid rebeccapurple;
+            height: 83px;
+            width: 100px;
+            margin: 10px;
+            
+        }
+        .hidden {
+            overflow: hidden;
+        }
+        .scroll {
+            overflow: scroll;
+        }
+        .auto {
+            overflow: auto;
+        }
+        .parent{
+            border: 1px solid rebeccapurple;
+            width: 300px;
+            /* 한줄로 만들기 */
+            white-space: nowrap; 
+            overflow: auto;
+        }
+        .parent div {
+            border: 1px solid blanchedalmond;
+            display: inline-block;
+            width: 100px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="p hidden" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.
+    </div>
+    <div class="p scroll" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.
+    </div>
+    <div class="p auto" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.
+    </div>
+    <div class="p auto" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, aliquid sapiente aspernatur totam nemo enim facilis ipsum, veritatis quidem deserunt nesciunt libero quisquam necessitatibus deleniti iste eveniet temporibus rerum mollitia.
+    </div>
+<hr>
+    <div class="parent">
+        <div>항목1</div>
+        <div>항목2</div>
+        <div>항목3</div>
+        <div>항목4</div>
+        <div>항목5</div>
+    </div>
+</body>
+</html>

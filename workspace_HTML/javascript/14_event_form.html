@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="asset/js/14_event_form.js"></script>
+    <style>
+        #parent {
+            background-color: aqua;
+            padding: 10px;
+        }
+        #c1 {
+            background-color: chartreuse;
+        }
+        #c2 {
+            background-color: darkorchid;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" method="get" action="https://search.naver.com/search.naver">
+        <input type="text" id="keyword" name="query" placeholder="검색어 입력">
+        <select id="site">
+            <option value="1">네이버</option>
+            <option value="2">구글</option>
+        </select>
+        <button type="submit" >검색</button>
+    </form>
+<!-- 
+    문제 1
+    여러개의 checkbox가 있을 때 
+    선택 버튼을 클릭하여 선택한 토핑의 값을 따로 모아 출력    
+    문제 2
+    젠체 선택을 구현 하시오
+        2-1
+        전체 선택 체크 시 모두 선택
+        전체 선택 체크 해제 시 모두 선택 해제
+        2-2
+        전체 선택 후 하나라도 풀리면 전체 선택도 해제
+        전체 선택이 해제된 경우에도 모든 요소 선택시 전체선택 체크활성
+        
+-->
+    <div>
+        피자 토핑
+        <hr>
+        <input type="checkbox" class="chk_all"> 전체선택 <br>
+        <input type="checkbox" class="chk"  value="페페로니">페페로니
+        <input type="checkbox" class="chk"  value="베이컨">베이컨
+        <input type="checkbox" class="chk"  value="치즈">치즈
+        <input type="checkbox" class="chk" value="파인애플">파인애플
+        <input type="checkbox" class="chk" value="버섯">버섯
+        <input type="checkbox" class="chk" value="옥수수">옥수수
+        <br>
+        <input id="chbu" type="button" value="선택">
+    </div>
+    <div class="ckva">
+        예제 : < 토핑 : 베이컨, 치즈, 옥수수 >
+    </div>
+
+    <div id="parent"> 부모
+        <div id="c1">자식1</div>
+        <div id="c2">자식2</div>
+    </div>
+
+
+</body>
+</html>

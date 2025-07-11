@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let now = new Date();
+        console.log(now);
+        //Thu Jul 03 2025 14:17:14 GMT+0900 (한국 표준시)
+
+        const y = now.getFullYear();
+        console.log('년: ', y);
+        //년:  2025
+
+        // 월(0 ~ 11)  ... 그래서 원하는 달은 +1 해야함
+        const M = now.getMonth();
+        console.log('월: ', M + 1);
+        // 월:  7
+
+        const d = now.getDate();
+        console.log('일: ', d);
+
+        // 요일(0~6) 일~토까지
+        const w = now.getDay();
+        console.log('요일 : ', w);
+
+        // 시간 (24시간)
+        const h = now.getHours();
+        console.log('시 : ', h);
+        // 시 :  14
+
+        // 분
+        const m = now.getMinutes();
+        console.log('분 : ', m);
+        // 분 :  25
+
+        // 초
+        const s = now.getSeconds();
+        console.log('초 : ', s);
+
+        let iso = now.toISOString();
+        console.log(iso);
+        // 2025-07-03T05:26:43.503Z
+        // T는 날짜랑시간를 기준으로 해준다
+        // Z는 1000분의1초를 나눈것이다.
+        let a = iso.split('T')
+        console.log(a);
+        let aa = a[1].split('.')
+        console.log(a[0]);
+        console.log(a[1]);
+        console.log(aa[0]);
+        console.log(aa[1]);
+
+        // 1751521758587
+        // 1751522002059
+
+        let timestamp = now.getTime();
+        console.log(timestamp);
+
+        let before = new Date().getTime();
+        for (let i = 0; i < 100000; i++) {
+        }
+
+        let after = new Date().getTime();
+        console.log('after = before = ', after - before)
+
+
+        let time = new Date();
+        console.log(time.toISOString());
+
+        time.setHours(time.getHours() + 9);
+        console.log(time.toISOString());
+        time = new Date('2025-05-12');
+        console.log(time.toISOString());
+
+
+    </script>
+
+</head>
+
+<body>
+    <div id="clock"></div>
+    <script>
+        setInterval(
+        function() {
+            let clock = new Date()
+            let bun = clock.getMinutes();
+            let cho = clock.getSeconds();
+            let text = '<strong>'+bun + '분' + cho + "초</strong>";
+            document.querySelector("#clock").innerHTML = text;
+        },330
+    )
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="id" value="미리적은글"><br>
+    <input type="password" id="pw"><br>
+    <input type="date" id="data"><br>
+
+    <input type="radio" name="ai" value="1">chatGPT
+    <input type="radio" name="ai" value="2">gemini
+    <input type="radio" name="ai" value="3">bing
+    <input type="radio" name="ai" value="4" checked="checked">perplexity <br>
+
+    <input type="checkbox" class="room" value="에어컨"> 에어컨
+    <input type="checkbox" class="room" value="식세기"> 식세기
+    <input type="checkbox" class="room" value="건조기"> 건조기
+
+    <br>
+    <select id="select">
+        <option value="1">javascript</option>
+        <option value="2">java</option>
+        <option value="3" selected="selected">css</option>
+        <option value="4">sql</option>
+        
+    </select>
+<br><br>
+    <textarea id="textarea">초기값</textarea>
+
+    <div id="view"></div>
+
+
+    <script>
+        setTimeout(()=>{
+            const text = document.querySelector('#id')
+            console.log('text : ' , text.value); 
+            text.value = '아이쿠....'
+            const pw = document.querySelector('#pw')
+            console.log('pw: ' , pw.value);
+            pw.value='qwe@123'
+            const data = document.querySelector('#data')
+            data.value = '1995-12-01'
+            console.log('data: ' , data.value);
+            data.value = new Date().toISOString().split('T')[0]
+
+
+            let radio = document.querySelector('[name="ai"]:checked')
+            console.log( radio.value);
+
+            let radios = document.querySelectorAll('[name="ai"]')
+            radios[1].checked = true;
+
+            
+            let checkboxs = document.querySelectorAll('.room')
+            for(let i = 0; i<checkboxs.length; i++){
+                console.log(checkboxs[i].checked, checkboxs[i].value)
+                if(checkboxs[i].checked){
+                    console.log(checkboxs[i].value)
+                }
+            }
+            checkboxs[1].checked = true;
+
+            console.log("-----------------------------")
+            let checkboxs2 = document.querySelectorAll('.room:checked')
+            for(let i = 0; i<checkboxs2.length; i++){
+                console.log(checkboxs2[i].checked, checkboxs2[i].value)
+            }
+
+            const select = document.querySelector('#select');
+            console.log('select : ', select.value)
+
+            const op = document.querySelector('#select option:checked')
+            console.log(op,op.innerText)
+
+            select.value = 2;
+
+            const textarea = document.querySelector('#textarea');
+            console.log('textarea : ',textarea.value);
+            textarea.value = "바뀐값  비알?\n다음줄";
+
+            const text2 = document.querySelector('#view')
+            text2.innerHTML = (textarea.value).replace(/\n/g, '<br>');
+
+        }, 1000*4);
+        
+        
+
+
+    </script>
+</body>
+</html>

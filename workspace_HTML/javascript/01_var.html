@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 한줄 주석
+        /*
+         범위 주석
+        */
+        console.log("Hello World");
+
+        // 변수 선언 1
+        var a = 10;
+        console.log('a : ' + a);
+
+        // 변수 선언 2
+        // 선언없이 만들면 전역변수가 된다(호이스팅)
+        b = 20;
+        console.log('b : ' + b);
+        
+        // 변수 선언 3
+        // let은 재선언이 불가하다
+        let c = 30;
+        console.log('c : ' + c);
+        
+        // 변수 선언 4
+        // java의 final 개념 
+        // 값이 안바뀜
+        const d = 40;
+        console.log('d : ' + d);
+        // d = 50; 
+        // 에러 발생 자바가 멈춘다 단 위에꺼까지만 인식
+        // console.log('d : ' + d);
+        // console.log(e);
+
+        // var는 재선언이 가능하다
+        // let, const는 재선언이 불가하다
+        var a = 20;
+        console.log('a : ' + a);
+        b = 20;
+        console.log('b : ' + b);
+        // let c = 40; 
+        console.log(typeof c);
+        c = "문자";
+        console.log('c : ' + c);
+
+        console.log(typeof c);
+
+        let f= 1;
+        let g = "1.5";
+        console.log( f == g ); //값의 비교
+        console.log( f === g ); //값 + 타입까지 비교
+
+        let h;
+        console.log('h : ' + h);
+
+
+        console.log( 1.5 + 2 );
+        console.log( g + 2 );
+        console.log( g * 2 );
+        console.log( g - 2 );
+        console.log( g / 2 );
+
+        h="이것";
+        console.log(h * 2); //NaN : Not a Number
+        
+        console.log( Number(g)  + 2);
+        console.log( parseInt(8.5+2) + 2 );
+        
+        // console.log((h * 2) == "NaN")
+        console.log( isNaN(h * 2))
+
+        console.log( 5/0 );
+        console.log( isFinite(5/0)); // 무한인가 ?
+        
+        console.log("이전")
+        
+        alert("alert\nenter");
+        console.log("이후")
+        
+        const result1 = confirm("진짜? 떄리껄야????")
+        console.log('result1 :', result1);
+        
+        const result2 = prompt('비번을 입력하세요')
+        //취소시 null값
+        console.log('result2 :', result2);
+        
+
+        console.log('입력한 글씨는', result2 , '입니다.');
+        console.log(`입력한 글씨는 ${result2} 입니다.`);
+        // console.error("에러어?")
+        
+        if(1==1){
+            console.log("야호")
+        };
+
+        let i,
+            j,
+            k; 
+        // 가능
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

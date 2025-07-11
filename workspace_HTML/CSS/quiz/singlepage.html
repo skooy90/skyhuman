@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBook</title>
+    <link rel="icon" s href="/favicon.ico">
+    <style>
+        .head {
+            display: table;
+            margin: 10px;
+        }
+
+        .head img {
+            margin-right: 10px;
+        }
+
+        .head span {
+            display: table-cell;
+            vertical-align: middle;
+            font-weight: 600;
+            font-size: 24px;
+        }
+
+        .main {
+            display: flex;
+            margin: 20px 40px;
+        }
+
+        .left {
+            width: 600px;
+            padding: 50px 40px;
+        }
+
+        .left-1 {
+            font-size: 35px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .left-2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .left-3 {
+            margin-bottom: 32px;
+
+        }
+
+        .left-3 .left-3-1 {
+            background-color: orange;
+            color: white;
+            font-weight: 600;
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 2rem;
+            margin-right: 16px;
+        }
+        .left-3-1:hover {
+            cursor: pointer;
+        }
+        .left-3-2:hover {
+            cursor: pointer;
+        }
+
+        .left-3 .left-3-2 {
+            background-color: white;
+            color: orange;
+            border: 1px solid orange;
+            font-weight: 600;
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 2rem;
+        }
+
+        .left-4 {
+            background-color: rgb(236, 235, 235);
+            border-left: 3px solid orange;
+            padding: 32px 20px;
+            font-style: italic;
+        }
+
+        .left-5 {
+            margin-top: 20px;
+            display: flex;
+            justify-content: cneter;
+            align-items: center;
+        }
+
+        .mini-img {
+            width: 75px;
+            margin-right: 20px;
+        }
+
+        .img-name {
+            display: block;
+        }
+
+        .img-text {
+            display: block;
+        }
+
+
+        .right {
+            padding: 10px 30px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .right img {
+            width: 100%;
+        }
+
+        .right span {
+            text-decoration: 0.5px underline gray;
+        }
+        .right span:hover {
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .right .cle {
+            position: absolute;
+            display: flex;
+            background-color: green;
+            width: 120px;
+            height: 80px;
+            border-radius: 50%;
+            line-height: 1;
+            padding-top: 40px;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 24px;
+            top: 7%;
+            right: 7%;
+        }
+
+        .main2 {
+            background-color: rgb(243, 242, 242);
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3em;
+        }
+        
+        .sub-title {
+            padding: 0 10%;
+            font-size: 1.5em;
+            margin-bottom: 32px;
+        }
+        
+        .main2-text {
+            display: flex;
+            padding: 5% 10%;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .text-1 {
+            width: 250px;
+            margin-bottom: 32px;
+            min-width: 100px;
+        }
+        
+        .text-1-1 {
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .main3 {
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .m3-title {
+            font-size: 3em;
+            font-weight: 500;
+            margin-bottom: 48px;
+        }
+        
+        .m3-text {
+            
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            
+        }
+        
+        .m3-left {
+            width: 40%;
+        }
+        
+        .m3-left img {
+            width: 100%;
+            height: 90%;
+        }
+        
+        .m3-right {
+            width: 40%;
+        }
+
+        .m3-right ul {
+            color: #7FCDB8;
+        }
+        
+        .m3-right ul li {
+            margin-left: 40px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+            
+            color: black;
+            font-size: 22px;
+        }
+        
+        .m3-right .m3-buttun {
+            display: inline-block;
+            border-radius: 2rem;
+            background-color: orange;
+            padding: 15px 30px;
+            margin-top: 20px;
+        }
+        .m3-buttun:hover{
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .main4 {
+            text-align: center;
+            background-color: rgb(243, 242, 242);
+        }
+
+        .m4-title {
+            font-size: 3em;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .m4-text{
+            font-size: 20px;
+            text-align: center;
+            margin: 0 16% 32px;
+        }
+        .memder-text{
+            margin: 0 30% 32px; 
+            display: flex;
+            text-align: start;
+        }
+
+        
+    
+        .mt-1-title{
+            font-weight: 600;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .mt-1-text{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head"><img src="https://demos.onepagelove.com/html/devbook/assets/images/site-logo.svg" alt="loge">
+        <span>DevBook</span>
+    </div>
+
+    <div class="main">
+        <div class="left">
+            <div class="left-1">Free Book & eBook
+                <br>
+                Landing Page Template
+            </div>
+            <div class="left-2">A free Bootstrap 4 template for developers and programmers who want to self-publish
+                books. Download now and start selling your book right away!</div>
+            <div class="left-3">
+                <a class="left-3-1">Buy for $20</a>
+                <a class="left-3-2">Learn More</a>
+            </div>
+            <div class="left-4">"Highly recommended consectetur adipiscing elit. Proin et auctor dolor, sed venenatis
+                massa. Vestibulum ullamcorper lobortis nisi non placerat praesent mauris neque"</div>
+            <div class="left-5">
+                <img class="mini-img"
+                    src="https://demos.onepagelove.com/html/devbook/assets/images/profiles/profile-2.png" alt="사진">
+                <div class="left-5-text">
+                    <div class="img-name">Jean Doe
+                    </div>
+                    <div class="img-text">Senior Developer, Ipsum Company
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <img src="https://demos.onepagelove.com/html/devbook/assets/images/devbook-cover.png" alt="책 사진">
+            <span>See all book reviews</span>
+            <div class="cle">New<br>Release</div>
+        </div>
+    </div>
+
+    <div class="main2">
+        <div class="title">What Will You Get From This Book?</div>
+        <div class="sub-title">Section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+            blandit consequat consequat. Orci varius natoque penatibus et magnis.</div>
+        <div class="main2-text">
+            <div class="text-1">
+                <div><img src="asset/캡처.PNG" alt="이미지"></div>
+                <div class="text-1-1">Learn from lorem ipsum dolor sit amet consectetur
+                </div>
+                <div class="text-1-2">List one of your book's benefits here. Orci varius natoque penatibus et magnis dis
+                    parturient montes.</div>
+            </div>
+            <div class="text-1">
+                <div><img src="asset/캡처.PNG" alt="이미지"></div>
+                <div class="text-1-1">Discover phasellus id egestas tellus maximus
+                </div>
+                <div class="text-1-2">List one of your book's benefits here. Orci varius natoque penatibus et magnis dis
+                    parturient montes.</div>
+            </div>
+            <div class="text-1">
+                <div><img src="asset/캡처.PNG" alt="이미지"></div>
+                <div class="text-1-1">Master aliquet augue ac ipsum lobortis interdum
+                </div>
+                <div class="text-1-2">List one of your book's benefits here. Orci varius natoque penatibus et magnis dis
+                    parturient montes.</div>
+            </div>
+            <div class="text-1">
+                <div><img src="asset/캡처.PNG" alt="이미지"></div>
+                <div class="text-1-1">Deploy elementum mauris tincidunt tempus sagittis
+                </div>
+                <div class="text-1-2">List one of your book's benefits here. Orci varius natoque penatibus et magnis dis
+                    parturient montes.</div>
+            </div>
+            <div class="text-1">
+                <div><img src="asset/캡처.PNG" alt="이미지"></div>
+                <div class="text-1-1">Build Lorem Ipsum lobortis nec mauris habitant morbi</div>
+                <div class="text-1-2">List one of your book's benefits here. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Integer blandit consequat consequat.</div>
+            </div>
+            <div class="text-1">
+                <div><img src="asset/캡처.PNG" alt="이미지"></div>
+                <div class="text-1-1">Become mattis est et mauris tempus non imperdiet</div>
+                <div class="text-1-2">List one of your book's benefits here. Orci varius natoque penatibus et magnis dis
+                    parturient montes.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main3">
+        <div class="m3-title">What's Included</div>
+        <div class="m3-text">
+            <div class="m3-left">
+                <img src="https://demos.onepagelove.com/html/devbook/assets/images/devbook-devices.png" alt="phone">
+            </div>
+            <div class="m3-right">
+                <ul>
+                    <li>List your book's content here.</li>
+                    <li>PDF fermentum tincidunt erat</li>
+                    <li>EPUB curabitur fermentum.</li>
+                    <li>Lorem ipsum dolor sit amet.</li>
+                    <li>Praesent molestie odio risus.</li>
+                    <li>Kindle curabitur fermentum.</li>
+                    <li>Kindle curabitur fermentum.</li>
+                    <li>Kindle curabitur fermentum.</li>
+                </ul>
+                <div class="m3-buttun">I want this book</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main4">
+        <div class="m4-title">Who This Book Is For</div>
+        <div class="m4-text">List your target readers in this section and back up with reviews. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales sit amet neque sit amet molestie. Vivamus hendrerit nisi condimentum erat tempus, vitae accumsan odio euismod.</div>
+        <div class="memder-text">
+            <img class="mt-1-img" src="asset/캡처2.PNG" alt="아이콘">
+            <div class="mt-1">
+                <div class="mt-1-title">Software Developers</div>
+                <div class="mt-1-text">Learn lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales sit amet neque sit amet molestie.</div>
+            </div>
+        </div>
+        <div class="memder-text">
+            <img class="mt-1-img" src="asset/캡처2.PNG" alt="아이콘">
+            <div class="mt-1">
+                <div class="mt-1-title">App Developers</div>
+                <div class="mt-1-text">Learn lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales sit amet neque sit amet molestie.</div>
+            </div>
+        </div>
+        <div class="memder-text">
+            <img class="mt-1-img" src="asset/캡처2.PNG" alt="아이콘">
+            <div class="mt-1">
+                <div class="mt-1-title">Web Developers</div>
+                <div class="mt-1-text">Learn lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales sit amet neque sit amet molestie.</div>
+            </div>
+        </div>
+        <div class="memder-text">
+            <img class="mt-1-img" src="asset/캡처2.PNG" alt="아이콘">
+            <div class="mt-1">
+                <div class="mt-1-title">Product Designers</div>
+                <div class="mt-1-text">Learn lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales sit amet neque sit amet molestie.</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
