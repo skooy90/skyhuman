@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+
+<body>
+	<form method="get" action="/proj2_request/login">
+	<h1>회원가입</h1>
+	아이디 : <input class="id" type="text" name = id> <br>
+	비밀번호: <input class="pw" type="password" name = pw> <br>
+	비밀번호 확인: <input class="pw2" type="password" name = pw> <br>
+	<input class="su" type="submit" value="가입하기">
+	</form>
+	
+	
+	
+	<script type="text/javascript">
+	
+	const id = document.querySelector('.id');
+	const pw = document.querySelector('.pw');
+	const pw2 = document.querySelector('.pw2');
+	const su = document.querySelector('.su');
+	
+	id.addEventListener('input', () => {
+		console.log(id.value);
+	})
+	
+
+			
+	</script>
+</body>
+</html>

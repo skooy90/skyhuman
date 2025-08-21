@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .todo-wrap .todo{
+            display: flex;
+            justify-content: space-around;
+        }
+        .todo-wrap .todo [type=checkbox]:checked + span{
+            text-decoration: line-through;
+        }
+        /* 특정 속성을 제외한 거 뽑기 */
+        [type=checkbox]:not(#all){
+            transform: scale(1.5);
+        }
+    </style>
+    <script>
+        window.addEventListener('load',function(){
+            init()
+            bind()
+        })
+        function init(){
+            
+        }
+        function bind(){
+            document.querySelector('#add').addEventListener('click',()=>{
+                const  todo = document.querySelector('#todo').value
+                const  wrap = document.querySelector('.todo-wrap')
+/*
+<div class="todo">
+<input type="checkbox">
+<span>할일 1 </span>
+<input type="button" value="삭제">
+ </div>
+*/
+                const div = document.createElement('div')
+                div.classList.add('todo')
+                div.innerHTML = `
+                <input type="checkbox" class='chk'>
+                <span> ${todo} </span>
+                <input type="button" class="del" value="삭제">
+                `
+                div.querySelector('.del').addEventListener('click',(evt)=>{
+                    // 해당 내용 즉 삭제 버튼이 포함 된
+                    //  1. DOM 출력
+                    //이벤트가 발생한 DOM
+                    // console.log(evt.target)
+                    // 그 부모
+                    // console.log(evt.target.parentNode)
+                    //  2. DOM 지우기
+                    
+                    // 그 부모 삭제
+                    const isDel = confirm('삭제하실?')
+                    if(isDel){
+
+                        evt.target.parentNode.remove()
+                    }
+
+                })
+
+                wrap.append(div)
+                document.querySelector('#todo').value=''
+                
+            })
+
+            document.querySelector('#del_chk').addEventListener('click',()=>{
+                // 1. 체크되어 있는 모드 checkbox 가져오기 
+                const chks = document.querySelectorAll('[type=checkbox]:not(#all):checked')
+                console.log(chks.length)
+                // 2. 부모 지우기
+                // chks.forEach((c)=>{
+                //     c.parentNode.remove();
+                // })
+                // 3. 같은 부모의 del 버튼 클릭
+                for(i = 0; i <chks.length; i++){
+                    chks[i].parentNode.querySelector('.del').click()
+                }
+
+            })
+
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+
+        <h1> 할일 TODO</h1>
+        <div>
+            <input type="text" id="todo">
+            <input type="button" value="추가" id="add">
+            
+        </div>
+        <div>
+            <input type="checkbox" id="all">전체 선택
+            <input type="button" id="del_chk" value="선택삭제">
+        </div>
+        <div class="todo-wrap">
+            <!-- <div class="todo">
+                <input type="checkbox">
+                <span>할일 1 </span>
+                <input type="button" value="삭제">
+            </div> -->
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

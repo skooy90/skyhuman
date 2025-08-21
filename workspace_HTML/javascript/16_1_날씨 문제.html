@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener('load', bind)
+        function bind() {
+            document.querySelector('#btn5')
+                .addEventListener('click', () => {
+                    const serviceKey = 'RWGng7ni2ZKS97CtUerOO1FGPqTiahhGcu6CNwaLh6nIQehTrJtF4csBvwmO%2BXfSfbBBLJnkZxGXmjnH7kNfCw%3D%3D'
+                    let url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst'
+                    url += '?serviceKey=' + serviceKey
+                    url += '&numOfRows=1000'
+                    url += '&pageNo=1'
+                    url += '&dataType=JSON'
+                    url += '&base_date=20250716'
+                    url += '&base_time=1830'
+                    url += '&nx=63'
+                    url += '&ny=110'
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('get', url)
+                    xhr.send()
+                    xhr.onload = function () {
+                        // console.log(xhr.responseText)
+                        const data = JSON.parse(xhr.responseText)
+                        const item = data.response.body.items.item
+                        document.querySelector('#tbody').innerHTML=''
+                        document.querySelector('#tbody1').innerHTML=''
+                        for (let i = 0; i < item.length; i++) {
+                            if (item[i].category == 'T1H') {
+                                console.log(item[i].fcstTime, item[i].fcstValue)
+                                //< tr >
+                                //<td>1200</td>
+                                //<td>22</td>
+                                // </tr >
+                                document.querySelector('#tbody').innerHTML += 
+                                `
+                                <tr>
+                                    <td>${item[i].fcstTime}</td>
+                                    <td>${item[i].fcstValue}</td>
+                                </tr>
+                                `
+                            } else if (item[i].category == 'RN1') {
+                                console.log(item[i].fcstTime, item[i].fcstValue)
+                                //< tr >
+                                //<td>1200</td>
+                                //<td>22</td>
+                                // </tr >
+                                document.querySelector('#tbody1').innerHTML += 
+                                `
+                                <tr>
+                                    <td>${item[i].fcstTime}</td>
+                                    <td>${item[i].fcstValue}</td>
+                                </tr>
+                                `
+
+                            }
+                            const result = {}
+
+                            for (let i = 0; i < item.length; i++) {
+                                if (!result[item[i].fcstTime]) {
+                                    result[item[i].fcstTime] = {}
+                                }
+                                if (item[i].category == 'T1H') {
+                                    result[item[i].fcstTime].T1N = item[i].fcstValue
+                                }
+                                if (item[i].category == 'RN1') {
+                                    result[item[i].fcstTime].RN1 = item[i].fcstValue
+                                }
+                                if (item[i].category == 'REH') {
+                                    result[item[i].fcstTime].REH = item[i].fcstValue
+                                }
+                            }
+                            // console.log(result)
+                            const tbody10 = document.querySelector('#tbody10')
+                            tbody10.innerHTML=''
+                            // 자바에서 제이슨을 인덱스 처럼 관리 한다 
+                            for (let key in result) {
+                                // console.log('key',key)
+                                tbody10.innerHTML += `
+                                 <tr>
+                                    <td>${key}</td>
+                                    <td>${result[key].T1N}</td>
+                                    <td>${result[key].RN1}</td>
+                                    <td>${result[key].REH}</td>
+                                    </tr>
+                                    `
+                            }
+                        }
+
+
+                    }
+                })
+        }
+    </script>
+</head>
+
+<body>
+
+    <button type="button" id="btn5"> 날씨예보 </button>
+
+    <br>
+    <hr>
+    <h2>날씨표시</h2>
+
+    <table border=1>
+        <thead>
+
+            <tr>
+                <th>시간</th>
+                <th>온도</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <!-- <tr>
+                <td>1200</td>
+                <td>22</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <table border=1>
+        <thead>
+
+            <tr>
+                <th>시간</th>
+                <th>강수량</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1">
+            <!-- <tr>
+                <td>1200</td>
+                <td>22</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <table border=1>
+        <thead>
+
+            <tr>
+                <th>시간</th>
+                <th>온도</th>
+                <th>강수량</th>
+                <th>습도</th>
+            </tr>
+        </thead>
+        <tbody id="tbody10">
+            <!-- <tr>
+                <td>1200</td>
+                <td>22</td>
+            </tr> -->
+        </tbody>
+    </table>
+
+</body>
+
+</html>

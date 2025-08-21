@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        th {
+            width: 300px;
+        }
+
+        tr {
+            width: 300px;
+            text-align: center;
+        }
+
+        td {
+            height: 30px;
+        }
+    </style>
+    <script>
+        let _contents = []
+        window.addEventListener('load', bind)
+        function bind() {
+            document.querySelector('#btn1')
+                .addEventListener('click', () => {
+                    // ajax 객체 생성
+                    const xhr = new XMLHttpRequest();
+                    // 보낼 준비
+                    // 방식 method, 주소
+                    xhr.open('get', 'https://jsonplaceholder.typicode.com/users')
+                    // 보내기
+                    xhr.send()
+                    //
+                    xhr.onload = function () {
+                        console.log('짐이 왓노라')
+                        // xhr.responseText : 응답 받은 내용이 담겨있음
+                        console.log(xhr.responseText)
+                        const data = JSON.parse(xhr.responseText)
+                        console.log("data : ",data)
+                        // 해당 꺼 봅기 1, 2 
+                        console.log(data[0].username)
+                        console.log(data[0]['username'])
+                        console.log(data[0].address.geo.lat)
+
+                    }
+                })
+            document.querySelector('#btn4')
+                .addEventListener('click', () => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('get', 'http://humanjobs.co.kr/')
+                    xhr.send()
+                    xhr.onload = function () {
+                        console.log(xhr.responseText)
+
+                    }
+                })
+            document.querySelector('#btn5')
+                .addEventListener('click', () => {
+                    const serviceKey = 'RWGng7ni2ZKS97CtUerOO1FGPqTiahhGcu6CNwaLh6nIQehTrJtF4csBvwmO%2BXfSfbBBLJnkZxGXmjnH7kNfCw%3D%3D'
+                    let url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst'
+                    url += '?serviceKey=' + serviceKey
+                    url += '&numOfRows=1000'
+                    url += '&pageNo=1'
+                    url += '&dataType=JSON'
+                    url += '&base_date=20250716'
+                    url += '&base_time=1830'
+                    url += '&nx=63'
+                    url += '&ny=110'
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('get', url)
+                    xhr.send()
+                    xhr.onload = function () {
+                        console.log(xhr.responseText)
+                        const data = JSON.parse(xhr.responseText)
+                        const base_time = data.response.body.items.item
+                        let time = [];
+                        let t1h = [];
+                        let rn1 = [];
+                        let reh = [];
+                        console.log(base_time)
+                        base_time.forEach(e => {
+                            if (e["category"] == "T1H") {
+                                // document.querySelector('.table').innerHTML += `<tr><td>${e["fcstValue"]}</td>`
+                                t1h.push(e["fcstValue"])
+                                time.push(e["fcstTime"])
+                            }
+                            if (e["category"] == "RN1") {
+                                // document.querySelector('.table').innerHTML += `<td>${e["fcstValue"]}</td>`
+                                rn1.push(e["fcstValue"])
+                            }
+                            if (e["category"] == "REH") {
+                                // document.querySelector('.table').innerHTML += `<td>${e["fcstValue"]}</td></tr>`
+                                reh.push(e["fcstValue"])
+                            }
+                        });
+                        console.log(t1h)
+                        console.log(rn1)
+                        console.log(reh)
+                        console.log(time)
+                        document.querySelector('.table').innerHTML = `<tr>
+                        <th>시간</th>
+                        <th>온도</th>
+                        <th>강수량</th>
+                        <th>습도</th>
+                        </tr>`
+                        for (let i = 0; i < t1h.length; i++) {
+                            document.querySelector('.table').innerHTML += `<tr>
+                            <td>${time[i]}</td>
+                            <td>${t1h[i]}</td>
+                            <td>${rn1[i]}</td>
+                            <td>${reh[i]}</td>
+                        </tr>`
+                        }
+                        /* <tr>
+                            <td>시간값</td>
+                            <td>온도값</td>
+                            <td>강수량값</td>
+                            <td>습도값</td>
+                        </tr> */
+
+
+                    }
+                })
+            document.querySelector('#btn6')
+                .addEventListener('click', () => {
+                    const url = 'https://jsonplaceholder.typicode.com/users'
+                    const option = {
+                        method: 'get'
+
+                    }
+                    //↓ onload같은거
+                    fetch(url, option)
+                        .then(function (response) {
+                            return response.json()
+                        }).then(function (data) {
+                            console.log(data)
+                        }).catch(function (error) {
+                            // 중간에 에러 발생시 실행
+                            console.log(error)
+                        })
+                })
+            // 제이커리를 이용한 아작스 이용 방법 1
+            $('#btn7').off('click').on('click', function () {
+                // 스피너-로딩중 표시
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/users',
+                    type: 'get',
+                    success: function (data) {
+                        //성공
+                        // json일 경우 알아서 json으로 넘어옴
+                        console.log(data)
+                    },
+                    error: function (data) {
+                        // 실패
+                        console.log(data)
+                    },
+                    complete: function () {
+                        // 무조건 실행
+                        console.log('무조건 실행')
+                    }
+
+                })
+            })
+
+            try {
+                console.log(1, " 실헹")
+                throw new Error('에러')
+                console.log(2, " 계속 실헹")
+            } catch (err) {
+                console.log(3, "catch")
+                console.log(4, err)
+            } finally {
+                console.log(5, '무조건실행')
+            }
+            console.log('요기?')
+
+            // 제이커리를 이용한 아작스 이용 방법 2
+            $('#btn8').off('click').on('click', function () {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/users',
+                    type: 'get'
+                }).done(function (data) {
+                    console.log('성공', data)
+                }).fail(function (data) {
+                    console.log('실패', data)
+                }).always(function () {
+                    console.log('무조건 실행')
+                })
+
+            })
+            $('#btn9').off('click').on('click', function () {
+                let msg = $('#msg').val().replace(/\n/g, '%0a')
+                $.ajax({
+                    url: 'https://api.telegram.org/bot7987719867:AAFjwJU-Eanh687DDeyZ36E7aNQkqHXrwqQ/sendMessage?chat_id=6469223385&text=' + msg,
+                    type: 'get'
+                })
+            })
+            // 지금은 단발성
+            // 배열을 통해서 이전 대화를 같이 보내야 한다
+            $('#btn10').off('click').on('click', function () {
+                let msg = $('#msg2').val()
+                const key = 'AIzaSyDYghl6nRj86JNo5KRZBbHFxNglBjHPvjU'
+                const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+key
+                _contents.push({
+                        role : 'user',
+                        parts : [{
+                            text : msg
+                        }]
+                    })
+
+                const data = {
+                    contents : _contents
+                }
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open('post',url)
+                xhr.setRequestHeader('Content-Type','application/json')
+                xhr.send(JSON.stringify(data))
+                xhr.onload = function(){
+                    console.log('젬민니:  ')
+                    console.log(xhr.responseText)
+                    const response = JSON.parse(xhr.responseText)
+                    const answer = response.candidates[0].content.parts[0].text
+                    $('#gemini').html( answer.replace(/\n/g, '<br>'))
+
+
+                _contents.push({
+                        role : 'model',
+                        parts : [{
+                            text : answer
+                        }]
+                    })
+
+
+                    /*
+                        {
+                "candidates": [
+                    {
+                    "content": {
+                        "parts": [
+                        {
+                            "text":
+                    */
+                }
+                
+            })
+        }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btn1"> ajax 실행 </button>
+    <button type="button" id="btn4"> 휴먼 </button>
+    <button type="button" id="btn5"> 날씨예보 </button>
+    <button type="button" id="btn6"> fetch </button>
+    <button type="button" id="btn7"> jQuery </button>
+    <button type="button" id="btn8"> jQuery2 </button>
+
+    <hr>
+    <textarea id="msg"></textarea>
+    <br>
+    <button id="btn9">텔레그램 발송
+    </button>
+    <hr>
+    <hr>
+    <div id="gemini">잼민에게 물어보기</div>
+    <textarea id="msg2"></textarea>
+    <br>
+    <button id="btn10">잼미니 발송
+    </button>
+    <hr>
+
+    <br>
+    <hr>
+    <h2>날씨표시</h2>
+
+    <table class="table">
+        <tr>
+            <th>시간</th>
+            <th>온도</th>
+            <th>강수량</th>
+            <th>습도</th>
+        </tr>
+        <!-- <tr>
+            <td>시간값</td>
+            <td>온도값</td>
+            <td>강수량값</td>
+            <td>습도값</td>
+        </tr> -->
+    </table>
+
+</body>
+
+</html>

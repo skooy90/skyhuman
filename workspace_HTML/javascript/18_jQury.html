@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        // jQuery의 선언
+        $(()=>{
+          init()
+          bind()
+        })
+        function init(){
+            const list_h1 = $('h1')
+            console.log(list_h1);    // jQuery 배열 객체
+            console.log( list_h1[0] ); //pure(순수) javascript
+
+            console.log($('#human')); //없으면 0개짜리 배열
+            //querySelectorAll에 해당
+            //All만 된다
+            $('h1').text('싹다변경'); 
+            //inner Text와 같다
+            // $('h1').html('<a href="#">a tag</a>'); 
+            $('h1').html('<a href="javascript:void(0)">a tag</a>'); 
+            //inner HTML와 같다
+            console.log($('#parent'))
+
+            //클래스 추가
+            $('#parent').addClass('c1');
+            $('#parent').addClass('c2');
+            $('#parent').addClass('c3 c4');
+
+            //클래스 제거
+            $('#parent').removeClass('c2 c4')
+            // 클래스 있으면 제거 , 없으면 추가
+            // $('#parent').toggleClass('c2')
+            $('#parent').toggleClass('c2')
+
+            // 클래스가 있는지 확인
+            console.log($('#parent').hasClass('c2'))
+
+            // getAttribute 속성의 값 가져오기
+            let human = $('#chk').attr('data-human')
+            console.log(human)
+
+            // setAttribute 속성의 값 바꾸기
+            $('#chk').attr('data-human', '123')
+            human = $('#chk').attr('data-human')
+            console.log(human)
+            $('#chk').attr('data-game', '윷놀이')
+
+            // data-속성명 에서 속성명만 사용할 수 있다
+            console.log($('#chk').data('game'))
+
+            // 개발자 도구에서 안보이는 속성 추가
+            // console.log로는 값을 확인 할 수 있다.
+            $('#chk').data('dinner','찌개')
+            console.log($('#chk').data('dinner'))
+
+            // 속성 삭제 removeAttribute 
+            $('#chk').removeAttr('data-game');
+
+            // $()안에 html 태크를 넣으면 
+            // createElement 해줌
+            let child2 = $('<div class="child2">자식2</div>')
+            console.log( child2[0] )
+
+            // 자식의 마지막에 요소 추가
+            $('#parent').append(child2)
+
+            $('#parent').prepend('<div class="child3">자식3</div>')
+
+            $('#parent').after('<div id=parent2>앙</div>')
+            $('#parent').before('<div id=parent2>앙2</div>')
+            //내용지우기
+            // $('#parent').html('') 와 같은거
+            $('#parent').empty();
+
+            // 태그 삭제
+            $('#parent').remove();
+
+            // 스타일 적용
+            $('#input1').css('backgroundColor','yellow')
+            //DOM의 적용 된 실제 CSS 값 읽기
+            console.log($('#input1').css('backgroundColor'))
+            console.log($('#input1').css('fontSize'))
+            console.log($('#input1').css('width'))
+            console.log($('#input1').width())
+            $('#input1').width(300)
+        }
+        //변수2개로 사용 할 수 있다 jq
+        function bind(){
+            //1번째
+            // $('#btn1').click(function(){})
+            // 2번째
+            $('#btn1').on('click',function(event){
+                console.log(this === event.currentTarget)
+                //값 가져오기
+                // $('#input1')[0].value
+                console.log($('#input1').val())
+                // 값 바꾸기
+                $('#input1').val('출발')
+                
+                // check 여부 확인
+                console.log($('#chk').prop('checked'))
+                // check 상태 바꾸기
+                $('#chk').prop('checked',true)
+            })
+            $('.btn').on('click', function(event){
+                console.log('버튼2')
+                console.log(event.target)
+                console.log(this)
+
+            })
+            $('.btn').off('click').on('click', function(){
+                console.log('버튼!')
+                bind()
+            })
+            // 이번테 종류.식별자로 bind를 하고 
+            $('.btn').off('click')
+            $('.btn').on('click.dom' , function(){
+                console.log('버튼 dom')
+            })
+            $('.btn').on('click.ajax' , function(){
+                console.log('버튼 ajax')
+            })
+            // 이벤트종류.식별자로 특정 이벤트만 unbind할 수 있다
+            $('.btn').off('click.ajax')
+
+            $('#parent10').on('click', function(evt){
+                // evt.stopPropagation()
+
+                console.log('this', this)
+                console.log('evt.target', evt.target)
+
+                //자식 중에서 찾기
+                
+                // $('#parent10')[0].querySelector
+                $('#parent10').find('.child10')
+
+
+                // 부모로 올라가기
+                // $('#parent10')[0].parentNode
+                $('#parent10').parent()
+            })
+
+            $('.child10').on('click', function(evt){
+                // 부모모르게 하는법 2가지
+                // evt.stopPropagation()
+                // 제이커리에서만 가능 
+                return false
+            })
+            $('#btn3').off('click').on('click',function(){
+                // $('.child10').hide() //display : none  적용
+                // $('.child10').show() // display속성 삭제
+                // $('.child10').fadeToggle() // Toggle
+                // $('.child10').slideToggle()
+                $('.child10').animate({
+                    width : '300px',
+                    height : '+=20px'
+                })
+
+            })
+
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>첫번째</h1>
+    <h1>두번째</h1>
+    <h1>세번째</h1>
+
+    <div id="parent">
+        부모
+        <div class="child">자식</div>
+    </div>
+
+
+    <input type="checkbox" id="chk" class="cb1" value="1"><br>
+    <input type="text" id="input1"> 
+    <input type="button" id="btn1" class="btn" value="버튼1">
+    <input type="button" id="btn2" class="btn" value="버튼2">
+    <input type="button" id="btn3" class="btn" value="버튼3">
+
+    <div id="parent10">
+        부모10
+        <div class="child10" style="border: 1px solid red; height: 100px; background-color: aqua;">
+            자식10</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<h1> 피자 주문하기 </h1>
+	<h2> 메뉴판 </h2>
+	페페로니 : 1만원 뿔감자 : 20000만원 파인애플 : 3000만원 <br>
+	사이즈 : M : +10000 L : +20000 XL : +30000
+	도핑 개당 +10000
+	
+
+	<form method="get" action="../piza">
+	
+		메뉴 : <select name="menu" value="menu">
+			<option value="페페로니">페페로니</option>
+			<option value="뿔감자">뿔감자</option>
+			<option value="파인애플">파인애플</option>
+		</select>
+		<br>
+		<br>
+		사이즈 : <input type="radio" name="size" value="M">M	
+		<input type="radio" name="size" value="L">L	
+		<input type="radio" name="size" value="XL">XL
+		<br>
+		<br>
+		도핑<br> 
+		<input type="checkbox" name = "toping" value="버섯">버섯
+		<input type="checkbox" name = "toping" value="올리브">올리브
+		<input type="checkbox" name = "toping" value="파인애플">파인애플
+		<input type="checkbox" name = "toping" value="김치">김치
+		<br>
+		<br>
+		요청사항 <br>
+		<textarea name="tx1"  value="tx1">
+			리뷰 이벤트 콜라 서비스
+		</textarea>					
+		<br>
+		<br>
+		<input type="submit" value="주문하기">
+	
+	</form>
+
+
+</body>
+</html>

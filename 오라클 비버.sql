@@ -1378,4 +1378,62 @@ INSERT INTO date_table
  ORDER BY dname DESC;
  
  
+ SELECT  * FROM emp
+ 
+ 
+ 
+ CREATE TABLE tbl_todo (
+ 	tno NUMBER PRIMARY KEY,
+ 	title varchar2(4000) NOT NULL,
+ 	dueDate DATE,
+ 	finished number(1)
+ );
+ 
+ SELECT * FROM tbl_todo;
+ 
+ CREATE SEQUENCE seq_tbl_todo;
+ 
+-- INSERT INTO tbl_todo (tno,title,duedate,finished)
+-- VALUES (seq_tbl_todo.nextval,'연습2','2025-08-19',0);
+
+ 
+ INSERT INTO tbl_todo (tno,title,duedate,finished)
+ VALUES (seq_tbl_todo.nextval,'연습2',to_date('2025-08-19','yyyy-mm-dd'),0);
+ 
+ COMMIT ;
+ 
+ 
+ DELETE tbl_todo WHERE tno = 2;
+ 
+ COMMIT ;
+ 
+ SELECT * FROM TBL_TOdo WHERE tno = 4;
+ 
+ 
+SELECT * FROM emp2;
+ 
+
+ CREATE TABLE emp2 
+ AS SELECT * FROM emp;
+
+ DELETE emp2
+ WHERE empno = 7369;
+ 
+ 
+ CREATE TABLE board2(
+ 	bid NUMBER PRIMARY KEY,
+ 	btitle varchar2(4000) NOT NULL,
+ 	bcontent varchar2(4000) NOT NULL,
+ 	bwriter varchar2(4000) NOT NULL,
+ 	bcreatedAt DATE
+ );
+ 
+SELECT * FROM board2;
+ 
+CREATE SEQUENCE seq_bid;
+ 
+ INSERT INTO board2
+ VALUES (seq_bid.nextval, '제목', '내용','작성자','2025-08-20');
+ 
+ COMMIT;
  
