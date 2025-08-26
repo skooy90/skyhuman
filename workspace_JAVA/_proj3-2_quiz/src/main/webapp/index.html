@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 관리 시스템</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 영화 관리 시스템</h1>
+            <p>영화 정보를 효율적으로 관리하세요</p>
+        </div>
+        
+        <div class="nav">
+            <ul>
+                <li><a href="list">영화 목록</a></li>
+                <li><a href="add">영화 추가</a></li>
+                <li><a href="search">영화 검색</a></li>
+                <li><a href="stats">통계</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <h2 style="text-align: center; color: #495057; margin-bottom: 30px;">시스템 기능</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>📋 영화 목록</h3>
+                    <p>등록된 모든 영화를 한눈에 확인할 수 있습니다. 영화 ID, 제목, 포스터, 개봉일을 포함한 상세 정보를 제공합니다.</p>
+                    <a href="list" class="btn">목록 보기</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>➕ 영화 추가</h3>
+                    <p>새로운 영화 정보를 시스템에 등록할 수 있습니다. 제목, 포스터 URL, 개봉일을 입력하여 영화를 추가하세요.</p>
+                    <a href="add" class="btn">영화 추가</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔍 영화 검색</h3>
+                    <p>제목으로 영화를 검색할 수 있습니다. 빠르고 정확한 검색 기능으로 원하는 영화를 쉽게 찾으세요.</p>
+                    <a href="search" class="btn">검색하기</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 통계</h3>
+                    <p>등록된 영화의 통계 정보를 확인할 수 있습니다. 총 영화 수, 월별 개봉 현황 등을 제공합니다.</p>
+                    <a href="stats" class="btn">통계 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

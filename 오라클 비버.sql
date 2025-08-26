@@ -1435,5 +1435,24 @@ CREATE SEQUENCE seq_bid;
  INSERT INTO board2
  VALUES (seq_bid.nextval, '제목', '내용','작성자','2025-08-20');
  
+ 
+ UPDATE emp2 SET ename = 'song', sal=7777 WHERE empno = 7777; 
+ 
+ 
  COMMIT;
+ 
+ 
+ CREATE TABLE movie(
+ 	movie_id NUMBER(3) PRIMARY KEY,
+ 	title varchar2(3000),
+ 	img_url varchar2(4000),
+ 	open_date DATE);
+ 
+ SELECT * FROM movie;
+ 
+ CREATE SEQUENCE seq_mid;
+ 
+ INSERT INTO movie
+ VALUES (seq_mid.nextval,'제목', '이미지링크','2025-12-01');
+ 
  

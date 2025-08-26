@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 추가 - 영화 관리 시스템</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .preview {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .preview img {
+            max-width: 200px;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>➕ 영화 추가</h1>
+        </div>
+        
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">홈</a></li>
+                <li><a href="list">영화 목록</a></li>
+                <li><a href="add.html">영화 추가</a></li>
+                <li><a href="search">영화 검색</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <form action="add" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">영화 제목 *</label>
+                    <input type="text" id="title" name="title" required placeholder="영화 제목을 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label for="img_url">포스터 이미지 URL</label>
+                    <input type="url" id="img_url" name="img_url" placeholder="https://example.com/poster.jpg">
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">개봉일 *</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">영화 설명</label>
+                    <textarea id="description" name="description" rows="4" placeholder="영화에 대한 간단한 설명을 입력하세요"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="genre">장르</label>
+                    <input type="text" id="genre" name="genre" placeholder="액션, 드라마, 코미디 등">
+                </div>
+                
+                <div class="form-group">
+                    <label for="director">감독</label>
+                    <input type="text" id="director" name="director" placeholder="감독 이름을 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label for="rating">평점</label>
+                    <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" placeholder="0.0 ~ 10.0">
+                </div>
+                
+                <div class="preview" id="preview" style="display: none;">
+                    <h4>포스터 미리보기</h4>
+                    <img id="preview-img" src="" alt="포스터 미리보기">
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="btn">영화 추가</button>
+                    <a href="list" class="btn btn-secondary">취소</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // 포스터 URL 미리보기 기능
+        document.getElementById('img_url').addEventListener('input', function() {
+            const url = this.value;
+            const preview = document.getElementById('preview');
+            const previewImg = document.getElementById('preview-img');
+            
+            if (url) {
+                previewImg.src = url;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+        
+        // 오늘 날짜를 기본값으로 설정
+        document.getElementById('date').value = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

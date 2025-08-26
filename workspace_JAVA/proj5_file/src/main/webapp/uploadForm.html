@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+ <!--  파일 첨부 시 유의 사항
+ 		method는 꼭 post로 ! 
+		enctype는 필수!! 		
+		enctype은 원래 한글 깨짐 방지에도 사용하는 속성
+		그 때는 accept-charset을 이용할 수 있다. 
+-->
+
+<form 
+	action="upload" 
+	method="post" 
+	enctype="multipart/form-data"
+	accept-charset="utf-8"
+	>
+	제목 : <input type="text" name="title"> <br>
+	내용 : <br>
+	<textarea rows="10" cols="40" name="content"></textarea> <br>
+		첨부파일 : <input type="file" name="file"> <br>
+		
+		<input type="submit" value="등록">
+
+</form>
+
+	<img alt="" src="/proj5_file/download?filename=1756191970376_스크린샷(1).png">
+
+
+
+</body>
+</html>

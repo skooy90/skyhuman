@@ -1,0 +1,32 @@
+package quiz;
+
+public class DTO {
+	private Integer empno;
+	private String ename;
+	private String job;
+	
+	public Integer getEmpno() {
+		return empno;
+	}
+	public void setEmpno(Integer empno) {
+		this.empno = empno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
+	}
+	@Override
+	public String toString() {
+		return "DTO [empno=" + empno + ", ename=" + ename + ", job=" + job + "]";
+	}
+	
+	
+}

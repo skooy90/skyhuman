@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import emp.DTO.EmpDTO;
+import emp.DTO2.EmpDTO;
 import emp.service.EmpService;
 
 @WebServlet("/remove")

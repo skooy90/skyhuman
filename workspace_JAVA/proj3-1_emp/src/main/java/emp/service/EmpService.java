@@ -2,8 +2,8 @@ package emp.service;
 
 import java.util.List;
 
-import emp.DAO.EmpDAO;
-import emp.DTO.EmpDTO;
+import emp.DAO2.EmpDAO;
+import emp.DTO2.EmpDTO;
 
 public class EmpService {
 	EmpDAO empDAO = new EmpDAO();
@@ -18,6 +18,12 @@ public class EmpService {
 	}
 	public int removeEmp(EmpDTO empDTO) {
 		return empDAO.deleteEmp(empDTO);
+	}
+	public int addEmp(EmpDTO empDTO) {
+		return empDAO.insertEmp(empDTO);
+	}
+	public int editEmp(EmpDTO empDTO) {
+		return empDAO.updateEmp(empDTO);
 	}
 	
 }

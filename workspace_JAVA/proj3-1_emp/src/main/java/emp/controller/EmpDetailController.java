@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import emp.DTO.EmpDTO;
+import emp.DTO2.EmpDTO;
 import emp.service.EmpService;
 
 @WebServlet("/detail")
@@ -55,8 +55,13 @@ public class EmpDetailController extends HttpServlet {
 			o.println("</table>");
 			
 			o.println("<form method='post' action='remove'>");			
-			o.println("	<input type='submit' value='삭제'>");
 			o.println("	<input type='hidden' name='empno' value='"+ empDTO2.getEmpno() +"'> ");
+			o.println("	<input type='submit' value='삭제'>");
+			o.println("</form>");
+			o.println("<form method='get' action='edit'>");			
+			o.println("	<input type='hidden' name='empno' value='"+ empDTO2.getEmpno() +"'> ");
+			o.println("	<input type='submit' value='수정'>");
+			o.println(" <a href='list'><input type='button' value='목록으로'></a>");
 			o.println("</form>");
 			
 			
