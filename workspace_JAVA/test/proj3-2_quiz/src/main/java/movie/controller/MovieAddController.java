@@ -105,3 +105,4 @@ public class MovieAddController extends HttpServlet {
 		response.sendRedirect("add.html");
 	}
 }
+

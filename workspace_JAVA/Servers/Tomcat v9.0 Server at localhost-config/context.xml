@@ -32,8 +32,8 @@
         type="javax.sql.DataSource"
         driverClassName="oracle.jdbc.driver.OracleDriver"
         url="jdbc:oracle:thin:@125.181.132.133:51521:xe"
-        username="scott4_3"
-        password="tiger"
+        username="SoAPI"
+        password="9599"
         maxTotal="50"
         maxWaitMillis="-1"
     />

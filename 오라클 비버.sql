@@ -1456,3 +1456,64 @@ CREATE SEQUENCE seq_bid;
  VALUES (seq_mid.nextval,'제목', '이미지링크','2025-12-01');
  
  
+ 
+-- 이해가 
+ 
+ SELECT * FROM emp2;
+ -- 1. 입사일 기준으로 내림차순
+ 
+ SELECT * FROM EMP2
+ ORDER BY HIREDATE DESC;
+ 
+ -- 2. 각자 번호 붙이기 
+ SELECT rownum, emp2.* FROM emp2
+ ORDER BY HIREDATE DESC;
+ SELECT job, count(*) AS cnt
+ FROM emp
+ WHERE sal > 1000
+ GROUP BY job
+ HAVING count(*) >=3
+ ORDER BY cnt;
+ 
+ SELECT rownum, t1.* FROM (
+ SELECT emp2.* FROM emp2
+ ORDER BY HIREDATE DESC
+ ) t1;
+ 
+ SELECT * FROM(
+ 	SELECT rownum rnum, t1.* FROM (
+ 		SELECT emp2.* FROM emp2
+ 		ORDER BY HIREDATE DESC
+ 	) t1
+ ) t2
+ WHERE rnum >= 3 AND rnum <= 6;
+ 
+ 
+ 
+ truncate table emp2;
+
+INSERT INTO emp2 (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+SELECT 
+    e.empno + lvl AS empno,                                 -- empno 증가
+    lvl || '_' ||  e.ename AS ename,                         -- 이름 앞 숫자
+    e.job, 
+    e.mgr,
+    e.hiredate + lvl AS hiredate,                           -- 하루씩 증가
+    e.sal + lvl AS sal,                                     -- sal 1씩 증가
+    e.comm, 
+    e.deptno
+FROM emp e
+JOIN (
+    SELECT LEVEL AS lvl 
+    FROM dual 
+    CONNECT BY LEVEL <= 20
+) l
+ON 1=1;
+ 
+SELECT * FROM emp2;
+ COMMIT;
+
+SELECT count(*) FROM emp2;
+
+
+ SELECT table_name FROM USER_TABLES;
