@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import emp.LoggableStatement;
 import emp.DTO2.EmpDTO;
 
 public class EmpDAO {
@@ -43,7 +44,8 @@ public class EmpDAO {
 			// SQL 준비
 			
 			String sql = "  SELECT count(*) cnt FROM emp2 ";
-			PreparedStatement ps = conn.prepareStatement(sql);
+//			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = new LoggableStatement(conn, sql);
 			// SQL 실행
 			ResultSet rs = ps.executeQuery();
 			
@@ -85,6 +87,8 @@ public class EmpDAO {
 			ps.setInt(2, empDTO.getEnd());
 			// SQL 실행
 			ResultSet rs = ps.executeQuery();
+			
+			
 			
 			// 결과 활용
 			

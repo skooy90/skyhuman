@@ -41,7 +41,7 @@ MES(Manufacturing Execution System)는 오이비누 제조업의 생산 과정�
 2. **PASSWORD_HISTORY**: 비밀번호 변경 이력 관리
 3. **WORKERS**: 작업자 목록 관리 (현재 담당 공정, 숙련도)
 4. **PRODUCT**: 제품 관리 (완제품/반제품/원자재)
-5. **RAW_MATERIAL_LOT**: 원자재 LOT 관리 (공급업체, 유통기한)
+5. **RAW_MATERIAL_LOT**: 원자재 LOT 관리 (공급업체, 유통기한)      
 6. **SEMI_FINISHED_LOT**: 반제품 LOT 관리 (공정 단계)
 7. **FINISHED_PRODUCT_LOT**: 완제품 LOT 관리 (품질검사 상태)
 8. **RAW_TO_SEMI_BOM**: 원자재→반제품 BOM (공정 온도, 시간, 설비)
