@@ -1,0 +1,33 @@
+MaterialController 서블릿 구현 완료!
+구현된 주요 기능들:
+1. URL 매핑 (@WebServlet("/material/*"))
+/material/list - 재고 목록 조회
+/material/detail?code=MA0001 - 재고 상세 조회
+/material/form - 재고 등록 폼
+/material/form?code=MA0001 - 재고 수정 폼
+/material/insert - 재고 등록 처리 (POST)
+/material/update - 재고 수정 처리 (POST)
+/material/delete - 재고 삭제 처리
+/material/filter?type=원자제 - 제품 유형별 필터링
+/material/search - 재고 검색
+2. 주요 메서드들
+listMaterials(): 전체 재고 목록 + 통계 정보
+detailMaterial(): 특정 재고 상세 정보 + 관련 재고들
+formMaterial(): 등록/수정 폼 + 드롭다운 데이터
+insertMaterial(): 재고 등록 처리 + 유효성 검사
+updateMaterial(): 재고 수정 처리 + 유효성 검사
+deleteMaterial(): 재고 삭제 처리
+filterMaterials(): 제품 유형별 필터링
+searchMaterials(): 재고 검색
+3. 주요 특징
+MVC 패턴: Controller 역할 수행
+예외 처리: 모든 메서드에서 Exception 처리
+유효성 검사: 입력 데이터 검증
+메시지 처리: 성공/실패 메시지 전달
+자동 생성: 재고코드 자동생성
+통계 정보: 각 페이지에서 통계 데이터 제공
+4. 데이터 전달
+request.setAttribute(): JSP로 데이터 전달
+성공/에러 메시지: 사용자 피드백
+드롭다운 데이터: StandardDTO, UsersDTO 목록
+통계 정보: 총 개수, 부족 재고, 유형별 개수
