@@ -13,39 +13,86 @@ import kr.or.human4.DTO.EmpDTO;
 public class EmpServiceImpl implements EmpService {
 	@Autowired
 	EmpDAO empDAO;
-	
+
 	@Override
-	public List<EmpDTO> getEmpList(){
-			
+	public List<EmpDTO> getEmpList() {
+
 		List<EmpDTO> result = empDAO.selectEmpList();
-		
-		return result; 
+
+		return result;
 	}
-	
+
 	@Override
-	public EmpDTO getEmp(){
-		
+	public EmpDTO getEmp() {
+
 		EmpDTO result = empDAO.selectOneEmp();
-		
-		return result; 
+
+		return result;
 	}
-	
+
 	@Override
-	public HashMap selectOneMap(){
-		
+	public HashMap selectOneMap() {
+
 		HashMap result = empDAO.selectOneMap();
-		
-		return result; 
+
+		return result;
 	}
-	
+
 	@Override
 	public List getEmpno(int empno) {
 		return empDAO.selectEmpno(empno);
 	}
-	
+
 	@Override
 	public List getEname(String Ename) {
 		return empDAO.selectEname(Ename);
 	}
-	
+
+	@Override
+	public List getEmpnoEname(EmpDTO dto) {
+		return empDAO.selectEmpnoEname(dto);
+	}
+
+	@Override
+	public int joinEmp2(EmpDTO dto) {
+		return empDAO.insertEmp2(dto);
+	}
+
+	@Override
+	public EmpDTO selecOneEmpno(int empno) {
+		return empDAO.selecOneEmpno(empno);
+	}
+
+	@Override
+	public EmpDTO updateEmp2(EmpDTO dto) {
+		return empDAO.updateEmp2(dto);
+	}
+	@Override
+	public EmpDTO deleteEmp2(int empno) {
+		return empDAO.deleteEmp2(empno);
+	}
+
+	@Override
+	public List selectEmp(EmpDTO dto) {
+
+		if (dto.getType().equals("1")) {
+			dto.setEname(dto.getKeyword());
+		} else if (dto.getType().equals("2")) {
+			dto.setJob(dto.getKeyword());
+		} else if (dto.getType().equals("3")) {
+			dto.setEname(dto.getKeyword());
+			dto.setJob(dto.getKeyword());
+		} else if (dto.getType().equals("4")) {
+			int sal = Integer.parseInt(dto.getKeyword());
+			dto.setSal(sal);
+		}
+
+		return empDAO.selectEmp(dto);
+	}
+
+	@Override
+	public List foreach(EmpDTO dto) {
+		return empDAO.foreach(dto);
+	}
+
 }

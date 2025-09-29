@@ -1517,3 +1517,22 @@ SELECT count(*) FROM emp2;
 
 
  SELECT table_name FROM USER_TABLES;
+ 
+ 
+ CREATE SEQUENCE seq_emp2;
+ 
+ SELECT seq_emp2.nextval FROM dual;
+ 
+ SELECT * FROM emp2;
+ 
+ insert into emp2(empno, ename, job, mgr, hiredate, sal, comm, deptno) 
+ VALUES(seq_emp2.nextval, 'song', 'jobu');
+
+ 
+ SELECT * FROM emp2
+ WHERE empno IN (7500, 7567, 7699);
+ 
+ 
+ 
+ 
+ 

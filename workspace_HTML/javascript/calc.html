@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<body>
+    
+    <div>
+        <div class="result"></div>
+        <input class="button" type="button" value="1"> 
+        <input class="button" type="button" value="2"> 
+        <input class="button" type="button" value="3"> 
+        <input class="buttontype" type="button" value="+"> 
+        <input class="buttonsum" type="button" value="="> 
+    </div>
+
+
+</body>
+    <script>
+        const result = document.querySelector('.result')
+        const type = document.querySelector('.buttontype')
+        const sum = document.querySelector('.buttonsum')
+        const button = document.querySelectorAll('.button')
+        let befor = 0;
+        let after = 1;
+        let isbutton = false;
+
+        result.innerHTML = "0";
+
+        
+        button.forEach(e =>{
+            e.addEventListener('click', function (){
+
+                if(result.innerHTML != "0"){
+                    result.innerHTML += e.value;
+                    
+                }else{
+                    result.innerHTML = e.value;
+                }
+
+            } )
+        })
+        type.addEventListener('click', function(){
+            types = "+";
+            befor =  parseInt(result.innerHTML);
+            isbutton = true;
+            result.innerHTML = "0";
+        })
+        sum.addEventListener('click', function(){
+            after = parseInt(result.innerHTML);
+            result.innerHTML = befor + after;
+
+        })
+
+    </script>
+
+</html>

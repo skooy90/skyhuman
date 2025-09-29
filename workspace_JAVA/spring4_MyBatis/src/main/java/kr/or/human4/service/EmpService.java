@@ -16,4 +16,15 @@ public interface EmpService {
 
 	List getEname(String Ename);
 	
+	List getEmpnoEname(EmpDTO dto);
+
+	int joinEmp2(EmpDTO dto);
+	
+	EmpDTO selecOneEmpno(int empno);
+	EmpDTO updateEmp2(EmpDTO dto);
+
+	List selectEmp(EmpDTO dto);
+
+	EmpDTO deleteEmp2(int empno);
+	List foreach(EmpDTO dto);
 }

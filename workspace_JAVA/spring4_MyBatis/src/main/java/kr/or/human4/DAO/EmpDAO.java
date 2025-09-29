@@ -17,4 +17,16 @@ public interface EmpDAO {
 
 	List selectEname(String ename);
 	
+	List selectEmpnoEname(EmpDTO dto);
+	
+	int insertEmp2(EmpDTO dto);
+	
+	EmpDTO selecOneEmpno(int empno);
+	
+	EmpDTO updateEmp2(EmpDTO dto);
+
+	List<EmpDTO> selectEmp(EmpDTO empDTO);
+
+	EmpDTO deleteEmp2(int empno);
+	List<EmpDTO> foreach(EmpDTO empDTO);
 }
