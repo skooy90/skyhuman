@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    
+    <h1>Hello EJS</h1>
+    <button type="button">ajax</button>
+
+    <script>
+        const xhr = new XMLHttpRequest()
+        xhr.open('post','/ajax')
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        const data = {
+            name : 'tkdtn',
+            addr : "대전"
+        }
+        xhr.send(JSON.stringify(data))
+        
+        xhr.onload = function(){
+            console.log(xhr.responseText)
+        }
+    </script>
+
+
+
+</body>
+</html>
