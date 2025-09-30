@@ -1,1 +1,12 @@
 worksapce_c#/
+workspace_node/server/node_modules/
+workspace_springBoot/hello/gradle/
+workspace_JAVA/_proj3-2_quiz/build/
+bin/
+*.class
+target/
+.vs/
+obj/
+Properties/
+packages/
+node_modules/
